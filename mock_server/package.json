@@ -1,0 +1,10 @@
+{
+  "name": "mock_server",
+  "version": "0.0.1",
+  "main": "server.js",
+  "author": "Thierry Belliot",
+  "license": "MIT",
+  "dependencies": {
+    "restify": "^4.3.0"
+  }
+}
