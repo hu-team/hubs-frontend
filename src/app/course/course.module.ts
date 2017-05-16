@@ -6,6 +6,9 @@ import { CourseOverviewComponent } from './course-overview/course-overview.compo
   imports: [
     CommonModule
   ],
-  declarations: [CourseOverviewComponent]
+  declarations: [CourseOverviewComponent],
+  exports: [
+    CourseOverviewComponent
+  ]
 })
 export class CourseModule { }
