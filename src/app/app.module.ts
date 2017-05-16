@@ -8,6 +8,7 @@ import { router } from './router/router';
 import { RouterModule } from '@angular/router';
 import { LoginModule } from './login/login.module';
 import { AuthService } from './auth.service';
+import { OverviewModule } from './overview/overview.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AuthService } from './auth.service';
     HttpModule,
     BrowserAnimationsModule,
     LoginModule,
+    OverviewModule,
      RouterModule.forRoot(router)
   ],
   providers: [
