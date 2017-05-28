@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { LoginModule } from './login/login.module';
 import { AuthService } from './auth.service';
 import { OverviewModule } from './overview/overview.module';
+import {Auth} from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -21,10 +22,10 @@ import { OverviewModule } from './overview/overview.module';
     BrowserAnimationsModule,
     LoginModule,
     OverviewModule,
-     RouterModule.forRoot(router)
+    RouterModule.forRoot(router)
   ],
   providers: [
-    AuthService
+    AuthService, Auth
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,53 @@
 <h2>Cursus overzicht</h2>
-<ngx-datatable [rows]="rows" [columns]="columns" class="material"> 
+<ngx-datatable [rows]="rows" [columns]="columns" class="material">
+  <ngx-datatable-column name="curcode">
+    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+            <span
+              title="Double click to edit"
+              (dblclick)="gotoLesson(row.id)"
+             >
+              {{value}}
+            </span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="curname">
+    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+            <span
+              title="Double click to edit"
+              (dblclick)="gotoLesson(row.id)"
+            >
+              {{value}}
+            </span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="start">
+    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+            <span
+              title="Double click to edit"
+              (dblclick)="gotoLesson(row.id)"
+            >
+              {{value}}
+            </span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="stop">
+    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+            <span
+              title="Double click to edit"
+              (dblclick)="gotoLesson(row.id)"
+            >
+              {{value}}
+            </span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="group">
+    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+            <span
+              title="Double click to edit"
+              (dblclick)="gotoLesson(row.id)"
+            >
+              {{value}}
+            </span>
+    </ng-template>
+  </ngx-datatable-column>
 </ngx-datatable>

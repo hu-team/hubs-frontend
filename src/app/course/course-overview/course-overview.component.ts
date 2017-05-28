@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { LessonService } from '../../lesson/lesson.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'course-overview',
   templateUrl: './course-overview.component.html',
@@ -7,24 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseOverviewComponent implements OnInit {
     rows = [
-    { curcode: 'TCIF-V3TFED-16', curname: 'Themaopdracht Frontend Development', curtype: 'Themaopdracht', start: "10:00", end: "12:00", room: "DL-4.88" },
-    { curcode: 'TCIF-V3TFED-16', curname: 'Themaopdracht Frontend Development', curtype: 'Themaopdracht', start: "10:00", end: "12:00", room: "DL-4.88" },
-    { curcode: 'TCIF-V3TFED-16', curname: 'Themaopdracht Frontend Development', curtype: 'Themaopdracht', start: "10:00", end: "12:00", room: "DL-4.88" },
-    { curcode: 'TCIF-V3TFED-16', curname: 'Themaopdracht Frontend Development', curtype: 'Themaopdracht', start: "10:00", end: "12:00", room: "DL-4.88" },
-    { curcode: 'TCIF-V3TFED-16', curname: 'Themaopdracht Frontend Development', curtype: 'Themaopdracht', start: "10:00", end: "12:00", room: "DL-4.88" }
   ];
   columns = [
     { prop: 'curcode', name: "Cursus code" },
     { prop: 'curname', name: "Cursus naam" },
-    { prop: 'curtype', name: "Cursus type" },
     { prop: 'start', name: "Begin tijd" },
-    { prop: 'end', name: "Eind tijd" },
-    { prop: 'room', name: "Lokaal" }
+    { prop: 'stop', name: "Eind tijd" },
+    { prop: 'group', name: "Groep" }
   ];
-  
-  constructor() { }
+
+  constructor(private ls: LessonService, private router: Router) {
+    this.getLesson();
+  }
 
   ngOnInit() {
+  }
+
+  getLesson() {
+    this.ls.getLessons()
+      .subscribe((data) => {
+        data.forEach((item) => {
+          this.rows.push(item);
+        })
+        console.log(data);
+      });
+
+  }
+
+  gotoLesson(id) {
+    this.router.navigate(['/lesson/' + id]);
   }
 
 }
