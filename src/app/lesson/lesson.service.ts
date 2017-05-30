@@ -14,7 +14,7 @@ export class LessonService {
     const token = this.auth.getToken();
     const headers = this.auth.getHeaders();
 
-    return this.http.get(AppSettings.API_ENDPOINT + 'school/lessons/', {
+    return this.http.get(AppSettings.API_ENDPOINT + 'school/lessons', {
       headers: headers
     })
       .map(this.extractData, this)
@@ -25,7 +25,7 @@ export class LessonService {
     const token = this.auth.getToken();
     const headers = this.auth.getHeaders();
 
-    return this.http.get(AppSettings.API_ENDPOINT + 'school/lessons/?id=' + id, {
+    return this.http.get(AppSettings.API_ENDPOINT + 'school/lessons?id=' + id, {
       headers: headers
     })
       .map(this.extractData, this)
