@@ -1,9 +1,23 @@
 <navbar></navbar>
-<div class="container">
+<div class="container lesson-overview">
   <h2>{{group}}</h2>
-  <ul>
-    <li *ngFor="let item of students">
-      {{item.first_name}} {{item.last_name}}
-    </li>
-  </ul>
+  <div class="class">
+    <table class="material table">
+      <thead>
+        <th>Selecteer</th>
+        <th>Naam</th>
+        <th>Studentennummer</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of students">
+          <td><input type="checkbox" value={{item.id}} (change)="updatePresenceList(item, $event)"/></td>
+          <td>{{item.first_name}} {{item.last_name}}</td>
+          <td>{{item.id}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="actions">
+    <button (click)="savePresences()" md-raised-button>Registreer aanwezigheid</button>
+  </div>
 </div>

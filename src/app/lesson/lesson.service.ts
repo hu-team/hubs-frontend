@@ -32,7 +32,7 @@ export class LessonService {
       .catch(this.handleError);
   }
 
-  getTime(time: Date) {
+  public getTime(time: Date) {
     const currTime = new Date(time);
     const toString = currTime.getHours() + ':' + currTime.getMinutes() + currTime.getMinutes();
 

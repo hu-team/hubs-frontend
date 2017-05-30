@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {LessonService} from '../lesson.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {PresenceService} from '../../presence/presence.service';
 
 @Component({
   selector: 'lesson-overview',
@@ -12,16 +13,16 @@ export class LessonOverviewComponent implements OnInit {
   private sub: any;
   group: string;
   students: any;
+  presenceList: Array<number> = [];
 
-  constructor(private ls: LessonService, private router: Router, private route: ActivatedRoute) {
+  constructor(private ls: LessonService, private router: Router, private route: ActivatedRoute, private presenceService: PresenceService) {
 
   }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
+      this.id = +params['id'];
       this.getLesson();
-      // In a real app: dispatch action to load the details here.
     });
   }
 
@@ -33,6 +34,37 @@ export class LessonOverviewComponent implements OnInit {
 
         console.log(data);
       });
+  }
+
+  updatePresenceList(item, e) {
+    var target = e.target.checked;
+
+    if(target) {
+      this.addItem(item.id);
+    } else {
+      this.removeItem(item.id);
+    }
+  }
+
+  addItem(id) {
+    if(this.presenceList.indexOf(id) === -1) {
+      console.log("Add");
+      this.presenceList.push(id);
+    }
+  }
+
+  removeItem(id) {
+    const index = this.presenceList.indexOf(id);
+    console.log(index);
+    if(index >= 0 ) {
+      this.presenceList.splice(index, 1);
+    }
+  }
+
+  savePresences() {
+    if(this.presenceList.length > 0) {
+      this.presenceService.savePresences(this.presenceList, this.id);
+    }
   }
 
   ngOnDestroy() {
