@@ -33,9 +33,10 @@ export class AuthService {
 
   public isLoggedIn() {
     const token = JSON.parse(localStorage.getItem('user'));
-    this.token = token.user;
 
     if(token) {
+      console.log("tes");
+      this.token = token.user;
       return true;
     } else {
       return false;

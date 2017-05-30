@@ -6,6 +6,11 @@ import { Auth } from '../auth.guard';
 
 export const router: Routes = [
     {
+      path: '',
+      redirectTo: 'overview',
+      pathMatch: 'full'
+    },
+    {
       path: 'login',
       component: LoginComponent
     },
