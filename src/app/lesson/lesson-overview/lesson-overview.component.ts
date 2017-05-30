@@ -13,7 +13,10 @@ export class LessonOverviewComponent implements OnInit {
   private sub: any;
   group: string;
   students: any;
-  presenceList: Array<number> = [];
+  presenceList: any;
+  presenceId: number;
+  presentList: Array<number> = [];
+  absenceList: Array<number> = [];
 
   constructor(private ls: LessonService, private router: Router, private route: ActivatedRoute, private presenceService: PresenceService) {
 
@@ -32,39 +35,60 @@ export class LessonOverviewComponent implements OnInit {
         this.group = data[0].group;
         this.students = data[0].students;
 
-        console.log(data);
+        this.getPresenceList();
       });
+  }
+
+  getPresenceList() {
+    this.presenceService.getPresences(this.id)
+      .subscribe(presenceList => {
+        this.presenceList = presenceList;
+
+        this.students.forEach(student => {
+          if(this.isStudentPresence(student.id)) {
+            student.present = true;
+          } else {
+            student.present = false;
+          }
+
+          student.presence_id = this.presenceId;
+        });
+      });
+  }
+
+  isStudentPresence(studentId) {
+    let bool = false;
+
+    this.presenceList.forEach(present => {
+      if(present.student === studentId) {
+        bool = present.present;
+        this.presenceId = present.id;
+      }
+    });
+
+    return bool;
+  }
+
+  setCheckbox(present) {
+    if(present) {
+      return 'checked';
+    } else {
+      return '';
+    }
   }
 
   updatePresenceList(item, e) {
     var target = e.target.checked;
 
     if(target) {
-      this.addItem(item.id);
+      item.present = true;
     } else {
-      this.removeItem(item.id);
-    }
-  }
-
-  addItem(id) {
-    if(this.presenceList.indexOf(id) === -1) {
-      console.log("Add");
-      this.presenceList.push(id);
-    }
-  }
-
-  removeItem(id) {
-    const index = this.presenceList.indexOf(id);
-    console.log(index);
-    if(index >= 0 ) {
-      this.presenceList.splice(index, 1);
+      item.present = false;
     }
   }
 
   savePresences() {
-    if(this.presenceList.length > 0) {
-      this.presenceService.savePresences(this.presenceList, this.id);
-    }
+    this.presenceService.savePresences(this.students);
   }
 
   ngOnDestroy() {

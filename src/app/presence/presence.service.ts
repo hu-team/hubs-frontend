@@ -9,21 +9,45 @@ export class PresenceService {
 
   constructor(private http: Http, private auth: AuthService) { }
 
-  public savePresences(presenceList, lessonId) {
+  public savePresences(studentList) {
 
 
-    presenceList.forEach(studentId => {
+    studentList.forEach(student => {
       const data = {
-        lesson: lessonId,
-        student: studentId
+        present: student.present
       };
 
-      this.http.post(AppSettings.API_ENDPOINT + 'school/presences?lesson=' + lessonId, data, {
+      this.http.patch(AppSettings.API_ENDPOINT + 'school/presences/' + student.presence_id, data, {
         headers: this.auth.getHeaders()
       })
         .subscribe(req => {
           console.log(req);
         });
     });
+  }
+
+  public getPresences(lessonId) {
+    return this.http.get(AppSettings.API_ENDPOINT + 'school/presences?lesson=' + lessonId + '&prefill=1', {
+      headers: this.auth.getHeaders()
+    })
+      .map((res: Response) => {
+        const body = res.json();
+        return body.results;
+      })
+      .catch(this.handleError);
+  }
+
+  private handleError (error: Response | any) {
+    // In a real world app, you might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 }

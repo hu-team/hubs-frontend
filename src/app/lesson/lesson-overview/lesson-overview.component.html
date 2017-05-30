@@ -10,7 +10,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of students">
-          <td><input type="checkbox" value={{item.id}} (change)="updatePresenceList(item, $event)"/></td>
+          <td><input type="checkbox" value={{item.id}} (change)="updatePresenceList(item, $event)" checked="{{setCheckbox(item.present)}}"/></td>
           <td>{{item.first_name}} {{item.last_name}}</td>
           <td>{{item.id}}</td>
         </tr>
