@@ -1,21 +1,37 @@
 <navbar></navbar>
 <div class="container lesson-overview">
-  <h2>{{group}}</h2>
+  <h2>{{name}} - {{group}}</h2>
+  <md-toolbar color="{{savedColor}}" class="message" *ngIf="savedSet">
+    <span *ngIf="isSaved">De aanwezigheid is geregistreerd.</span>
+    <span *ngIf="!isSaved">Er is helaas iets misgegaan.</span>
+  </md-toolbar>
   <div class="class">
-    <table class="material table">
-      <thead>
-        <th>Selecteer</th>
-        <th>Naam</th>
-        <th>Studentennummer</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of students">
-          <td><input type="checkbox" value={{item.id}} (change)="updatePresenceList(item, $event)" checked="{{setCheckbox(item.present)}}"/></td>
-          <td>{{item.first_name}} {{item.last_name}}</td>
-          <td>{{item.id}}</td>
-        </tr>
-      </tbody>
-    </table>
+      <ngx-datatable
+        class="material"
+        [rows]="students"
+        [columns]="columns"
+        [limit]="10"
+        [rowHeight]="'auto'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [columnMode]="'force'"
+        >
+        <ngx-datatable-column name="Aanwezig" [width]="115" [maxWidth]="115">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <input type="checkbox" value={{row.id}} (change)="updatePresenceList(row, $event)" checked="{{setCheckbox(row.present)}}"/>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Naam">
+          <ng-template let-row="row" let-value="fullName" ngx-datatable-cell-template>
+            {{row.fullName}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Studentennummer">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.student_number}}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
   </div>
   <div class="actions">
     <button (click)="savePresences()" md-raised-button>Registreer aanwezigheid</button>

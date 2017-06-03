@@ -3,6 +3,7 @@ import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import { AppSettings } from '../app-settings';
 import {AuthService} from '../auth.service';
+import 'rxjs/add/observable/forkJoin';
 
 @Injectable()
 export class PresenceService {
@@ -10,20 +11,21 @@ export class PresenceService {
   constructor(private http: Http, private auth: AuthService) { }
 
   public savePresences(studentList) {
-
+    const list = [];
 
     studentList.forEach(student => {
       const data = {
         present: student.present
       };
 
-      this.http.patch(AppSettings.API_ENDPOINT + 'school/presences/' + student.presence_id, data, {
+      const req = this.http.patch(AppSettings.API_ENDPOINT + 'school/presences/' + student.presence_id, data, {
         headers: this.auth.getHeaders()
-      })
-        .subscribe(req => {
-          console.log(req);
-        });
+      });
+
+      list.push(req);
     });
+
+    return Observable.forkJoin(list);
   }
 
   public getPresences(lessonId) {

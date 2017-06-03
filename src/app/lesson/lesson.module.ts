@@ -5,13 +5,17 @@ import {LessonService} from './lesson.service';
 import { LessonOverviewComponent } from './lesson-overview/lesson-overview.component';
 import {MdButtonModule} from '@angular/material';
 import { PresenceModule } from '../presence/presence.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import {MdToolbarModule} from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     NavigationModule,
     MdButtonModule,
-    PresenceModule
+    PresenceModule,
+    NgxDatatableModule,
+    MdToolbarModule
   ],
   declarations: [LessonOverviewComponent],
   providers: [

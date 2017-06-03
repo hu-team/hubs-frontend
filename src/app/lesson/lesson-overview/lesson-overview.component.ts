@@ -11,13 +11,30 @@ import {PresenceService} from '../../presence/presence.service';
 export class LessonOverviewComponent implements OnInit {
   id: number;
   private sub: any;
+  name: string;
   group: string;
   students: any;
   presenceList: any;
   presenceId: number;
   presentList: Array<number> = [];
   absenceList: Array<number> = [];
-
+  savedSet: Boolean = false;
+  isSaved: Boolean = false;
+  savedColor: string = 'primary';
+  columns = [
+    {
+      prop: 'present',
+      name: 'Aanwezig',
+      maxWidth: 100,
+      width: 100
+    },
+    {
+    prop: 'fullName',
+    name: 'Naam'
+  },{
+    prop: 'student_number',
+    name: 'Studentennummer'
+  }]
   constructor(private ls: LessonService, private router: Router, private route: ActivatedRoute, private presenceService: PresenceService) {
 
   }
@@ -34,6 +51,7 @@ export class LessonOverviewComponent implements OnInit {
       .subscribe(data => {
         this.group = data[0].group;
         this.students = data[0].students;
+        this.name = data[0].curname;
 
         this.getPresenceList();
       });
@@ -52,6 +70,7 @@ export class LessonOverviewComponent implements OnInit {
           }
 
           student.presence_id = this.presenceId;
+          student.fullName = student.first_name + ' ' + student.last_name;
         });
       });
   }
@@ -88,7 +107,31 @@ export class LessonOverviewComponent implements OnInit {
   }
 
   savePresences() {
-    this.presenceService.savePresences(this.students);
+
+    this.presenceService.savePresences(this.students)
+      .subscribe(result => {
+        if(result.length === this.students.length) {
+          this.savedSet = true;
+          this.isSaved = true;
+
+          this.clearMessage();
+        } else {
+          this.savedSet = true;
+          this.isSaved = false;
+          this.savedColor = 'warn';
+
+          this.clearMessage();
+        }
+      });
+  }
+
+  clearMessage() {
+    setTimeout(() => {
+      this.savedSet = false;
+      this.isSaved = false;
+      this.savedColor = 'primary';
+
+    }, 5000);
   }
 
   ngOnDestroy() {
