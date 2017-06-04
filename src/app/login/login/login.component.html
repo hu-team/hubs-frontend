@@ -6,10 +6,10 @@
     <md-card-content>
       <form #f="ngForm" (ngSubmit)="login(f)">
         <md-input-container class="full-width">
-          <input mdInput placeholder="Gebruikersnaam"  name="username" ngModel required #username="ngModel">
+          <input mdInput placeholder="Gebruikersnaam"  name="username" ngModel ng-required="true" #username="ngModel">
         </md-input-container>
         <md-input-container class="full-width">
-          <input mdInput placeholder="Wachtwoord" type="password"  name="password" ngModel required #password="ngModel">
+          <input mdInput placeholder="Wachtwoord" type="password"  name="password" ngModel ng-required="true" #password="ngModel">
         </md-input-container>
         <div>
           <button md-button>Login</button>

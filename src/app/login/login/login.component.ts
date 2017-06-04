@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/overview']);
     }
   }
-
   private login(f: NgForm) {
     const username = f.value.username;
     const password = f.value.password;
@@ -30,3 +29,4 @@ export class LoginComponent implements OnInit {
     });
   }
 }
+
