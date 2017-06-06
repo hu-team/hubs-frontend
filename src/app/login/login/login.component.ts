@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {NgForm, FormBuilder, FormGroup} from '@angular/forms';
 import { AuthService } from '../../auth.service';
 import {Router} from '@angular/router';
 
@@ -11,22 +11,34 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   private username = '';
   private password = '';
+  isFormSubmit : boolean = false;
+  nietLeeg : boolean = false;
+  nietJuist : boolean = false;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private fb : FormBuilder) {
+  }
 
-  ngOnInit() {
-    if(this.auth.isLoggedIn()) {
+  ngOnInit(): void {
+    if (this.auth.isLoggedIn()) {
       this.router.navigate(['/overview']);
     }
   }
+
   private login(f: NgForm) {
     const username = f.value.username;
     const password = f.value.password;
+    if(username == '' || password == ''){
+      this.nietLeeg = true;
+      this.isFormSubmit = true;
+    }
 
     this.auth.login(username, password)
-    .subscribe((data) => {
-      this.router.navigate(['/overview']);
-    });
+      .subscribe((data) => {
+      this.auth.setLocalStorageItem();
+        this.router.navigate(['/overview']);
+        console.log("test", data);
+      });
   }
 }
+
 
