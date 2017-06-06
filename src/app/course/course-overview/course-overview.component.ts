@@ -30,7 +30,6 @@ export class CourseOverviewComponent implements OnInit {
         data.forEach((item) => {
           this.rows.push(item);
         })
-        console.log(data);
       });
 
   }

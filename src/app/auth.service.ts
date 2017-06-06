@@ -4,18 +4,24 @@ import { Http, Headers, Response } from '@angular/http';
 import { AppSettings } from './app-settings';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
+// import {setInterval} from "timers";
 
 @Injectable()
 export class AuthService {
   private token: string;
+  private user: object;
 
   constructor(private http: Http, private router:Router) {
     const currUser = JSON.parse(localStorage.getItem('user'));
 
     if(currUser) {
-      console.log(currUser);
       this.token = currUser.token;
+      this.refreshToken();
     }
+
+    setInterval(() => {
+      this.refreshToken();
+    },300000);
   }
 
   public login(username: string, password: string): Observable<any> {
@@ -26,9 +32,7 @@ export class AuthService {
     .map(response => response.json())
     .map((data) => {
       this.token = data.token;
-      localStorage.setItem('user', JSON.stringify({
-        user: this.token
-      }));
+      this.user = data.user;
     });
   }
 
@@ -43,7 +47,6 @@ export class AuthService {
     const token = JSON.parse(localStorage.getItem('user'));
 
     if(token) {
-      console.log("tes");
       this.token = token.user;
       return true;
     } else {
@@ -60,5 +63,29 @@ export class AuthService {
     headers.append('Authorization', 'JWT ' + this.token);
 
     return headers;
+  }
+
+  public setLocalStorageItem() {
+    localStorage.setItem('user', JSON.stringify({
+      user: this.token
+    }));
+  }
+
+  public refreshToken() {
+    if(this.token) {
+      this.http.post(AppSettings.API_ENDPOINT + 'core/auth/refresh', {
+        token: this.token
+      })
+        .map(response => {
+          return response.json();
+        })
+        .map(data => {
+          const json = data;
+          this.token = json.token;
+        })
+        .subscribe(() => {
+          this.setLocalStorageItem();
+        });
+    }
   }
 }
