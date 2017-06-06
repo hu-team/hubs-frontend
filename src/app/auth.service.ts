@@ -3,12 +3,13 @@ import { Observable } from 'rxjs';
 import { Http, Headers, Response } from '@angular/http';
 import { AppSettings } from './app-settings';
 import 'rxjs/add/operator/map';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
   private token: string;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private router:Router) {
     const currUser = JSON.parse(localStorage.getItem('user'));
 
     if(currUser) {
@@ -31,6 +32,13 @@ export class AuthService {
     });
   }
 
+  public logout (){
+    const user = localStorage.removeItem('user');
+    if(user){
+      this.router.navigate(['/login']);
+    }
+
+  }
   public isLoggedIn() {
     const token = JSON.parse(localStorage.getItem('user'));
 
