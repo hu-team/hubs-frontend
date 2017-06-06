@@ -16,6 +16,7 @@ export class AuthService {
 
     if(currUser) {
       this.token = currUser.token;
+      this.user = currUser.user;
       this.refreshToken();
     }
 
@@ -44,10 +45,11 @@ export class AuthService {
 
   }
   public isLoggedIn() {
-    const token = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    if(token) {
-      this.token = token.user;
+    if(user) {
+      this.token = user.token;
+      this.user = user.user;
       return true;
     } else {
       return false;
@@ -67,7 +69,8 @@ export class AuthService {
 
   public setLocalStorageItem() {
     localStorage.setItem('user', JSON.stringify({
-      user: this.token
+      token: this.token,
+      user: this.user
     }));
   }
 
@@ -87,5 +90,9 @@ export class AuthService {
           this.setLocalStorageItem();
         });
     }
+  }
+
+  public getUserRole() {
+    return this.user['user_type'];
   }
 }

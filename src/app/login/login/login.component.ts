@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
 
     this.auth.login(username, password)
     .subscribe((data) => {
+      this.auth.setLocalStorageItem();
       this.router.navigate(['/overview']);
     });
   }

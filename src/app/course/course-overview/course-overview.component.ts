@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LessonService } from '../../lesson/lesson.service';
 import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'course-overview',
   templateUrl: './course-overview.component.html',
@@ -14,7 +16,8 @@ export class CourseOverviewComponent implements OnInit {
     { prop: 'curname', name: "Cursus naam" },
     { prop: 'start', name: "Begin tijd" },
     { prop: 'stop', name: "Eind tijd" },
-    { prop: 'group', name: "Groep" }
+    { prop: 'group', name: "Groep" },
+    { prop: 'room', name: 'Lokaal'}
   ];
 
   constructor(private ls: LessonService, private router: Router) {
@@ -31,7 +34,6 @@ export class CourseOverviewComponent implements OnInit {
           this.rows.push(item);
         })
       });
-
   }
 
   gotoLesson(id) {

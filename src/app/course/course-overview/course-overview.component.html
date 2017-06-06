@@ -56,4 +56,14 @@
             </span>
     </ng-template>
   </ngx-datatable-column>
+  <ngx-datatable-column name="Lokaal" >
+    <ng-template ngx-datatable-cell-template let-row="row" let-value="value" let-row="row">
+            <span
+              title="Double click to edit"
+              (click)="gotoLesson(row.id)"
+            >
+              {{row.room}}
+            </span>
+    </ng-template>
+  </ngx-datatable-column>
 </ngx-datatable>

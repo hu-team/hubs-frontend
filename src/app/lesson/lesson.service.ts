@@ -53,7 +53,8 @@ export class LessonService {
         group: obj.group.code,
         students: obj.group.students,
         start: start,
-        stop: stop
+        stop: stop,
+        room: obj.room
       };
 
       return newObj;
