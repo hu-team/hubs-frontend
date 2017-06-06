@@ -34,7 +34,10 @@ export class AuthService {
     .map((data) => {
       this.token = data.token;
       this.user = data.user;
-    });
+    })
+      .catch(err => {
+        return Observable.throw(err);
+      })
   }
 
   public logout (){

@@ -27,7 +27,10 @@ export class LoginComponent implements OnInit {
     .subscribe((data) => {
       this.auth.setLocalStorageItem();
       this.router.navigate(['/overview']);
-    });
+    },
+    err => {
+      console.log(err);
+    })
   }
 }
 
