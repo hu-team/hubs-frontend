@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TeacherService} from "../../teachter/teacher.service";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'student-overview',
@@ -20,10 +22,16 @@ export class StudentOverviewComponent implements OnInit {
     { prop: 'stclass', name: "Klas" },
     { prop: 'stava', name: "Aanwezigheidspercentage" },
   ];
-  
-  constructor() { }
+
+  constructor(private teachService: TeacherService, private auth: AuthService) {
+
+  }
 
   ngOnInit() {
   }
 
+  getStudents() {
+
+    //this.teachService.getStudentCounselor();
+  }
 }

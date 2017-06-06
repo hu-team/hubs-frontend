@@ -37,7 +37,10 @@ export class LoginComponent implements OnInit {
       this.auth.setLocalStorageItem();
         this.router.navigate(['/overview']);
         console.log("test", data);
-      });
+      },
+    err => {
+      console.log(err);
+    })
   }
 }
 
