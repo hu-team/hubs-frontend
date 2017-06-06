@@ -27,9 +27,11 @@ export class LoginComponent implements OnInit {
   private login(f: NgForm) {
     const username = f.value.username;
     const password = f.value.password;
+    this.clearMessage();
     if(username == '' || password == ''){
       this.nietLeeg = true;
       this.isFormSubmit = true;
+      return;
     }
 
     this.auth.login(username, password)
@@ -39,9 +41,15 @@ export class LoginComponent implements OnInit {
         console.log("test", data);
       },
     err => {
-      console.log(err);
+      this.nietJuist = true;
+      this.isFormSubmit = true;
     })
   }
+  clearMessage() {
+      this.isFormSubmit = false;
+      this.nietJuist = false;
+      this.nietLeeg = false;
+    }
 }
 
 
