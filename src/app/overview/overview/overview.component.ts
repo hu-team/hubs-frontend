@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-overview',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
+  showStudents: Boolean = false;
 
-  constructor() { }
+  constructor(private authService: AuthService) {
+    if(this.authService.getUserRole()  === "counselor") {
+      this.showStudents = true;
+    }
+  }
 
   ngOnInit() {
   }

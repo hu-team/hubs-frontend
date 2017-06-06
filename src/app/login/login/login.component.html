@@ -5,11 +5,14 @@
     </md-card-header>
     <md-card-content>
       <form #f="ngForm" (ngSubmit)="login(f)">
+        <md-toolbar color="warn" *ngIf="isFormSubmit">
+          <span *ngIf="nietLeeg">Gebruikersnaam of Wachtwoord is leeg</span>
+        </md-toolbar>
         <md-input-container class="full-width">
-          <input mdInput placeholder="Gebruikersnaam"  name="username" ngModel ng-required="true" #username="ngModel">
+          <input mdInput placeholder="Gebruikersnaam"  name="username" ngModel #username="ngModel">
         </md-input-container>
         <md-input-container class="full-width">
-          <input mdInput placeholder="Wachtwoord" type="password"  name="password" ngModel ng-required="true" #password="ngModel">
+          <input mdInput placeholder="Wachtwoord" type="password"  name="password" ngModel #password="ngModel">
         </md-input-container>
         <div>
           <button md-button>Login</button>

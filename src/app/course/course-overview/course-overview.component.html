@@ -1,52 +1,68 @@
 <h2>Cursus overzicht</h2>
-<ngx-datatable [rows]="rows" [columns]="columns" class="material">
-  <ngx-datatable-column name="curcode">
-    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+<ngx-datatable [rows]="rows"
+               [columns]="columns"
+               [limit]="5"
+               [rowHeight]="'auto'"
+               [headerHeight]="50"
+               [footerHeight]="50"
+               [columnMode]="'force'" class="material course-table">
+  <ngx-datatable-column name="Cursus code">
+    <ng-template ngx-datatable-cell-template let-row="row" let-value="value" let-row="row">
             <span
               title="Double click to edit"
-              (dblclick)="gotoLesson(row.id)"
+              (click)="gotoLesson(row.id)"
              >
-              {{value}}
+              {{row.curcode}}
             </span>
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="curname">
-    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+  <ngx-datatable-column name="Cursus naam">
+    <ng-template ngx-datatable-cell-template let-row="row" let-value="value" let-row="row">
             <span
               title="Double click to edit"
-              (dblclick)="gotoLesson(row.id)"
+              (click)="gotoLesson(row.id)"
             >
-              {{value}}
+              {{row.curname}}
             </span>
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="start">
-    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+  <ngx-datatable-column name="Begin tijd" [width]="100" [maxWidth]="100">
+    <ng-template ngx-datatable-cell-template let-row="row" let-value="value" let-row="row">
             <span
               title="Double click to edit"
-              (dblclick)="gotoLesson(row.id)"
+              (click)="gotoLesson(row.id)"
             >
-              {{value}}
+              {{row.start}}
             </span>
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="stop">
+  <ngx-datatable-column name="Eind tijd" [width]="100" [maxWidth]="100">
     <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
             <span
               title="Double click to edit"
-              (dblclick)="gotoLesson(row.id)"
+              (click)="gotoLesson(row.id)"
             >
-              {{value}}
+              {{row.stop}}
             </span>
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="group">
-    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+  <ngx-datatable-column name="Groep">
+    <ng-template ngx-datatable-cell-template let-row="row" let-value="value" let-row="row">
             <span
               title="Double click to edit"
-              (dblclick)="gotoLesson(row.id)"
+              (click)="gotoLesson(row.id)"
             >
-              {{value}}
+              {{row.group}}
+            </span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Lokaal" >
+    <ng-template ngx-datatable-cell-template let-row="row" let-value="value" let-row="row">
+            <span
+              title="Double click to edit"
+              (click)="gotoLesson(row.id)"
+            >
+              {{row.room}}
             </span>
     </ng-template>
   </ngx-datatable-column>

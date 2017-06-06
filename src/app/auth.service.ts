@@ -4,18 +4,25 @@ import { Http, Headers, Response } from '@angular/http';
 import { AppSettings } from './app-settings';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
+// import {setInterval} from "timers";
 
 @Injectable()
 export class AuthService {
   private token: string;
+  private user: object;
 
   constructor(private http: Http, private router:Router) {
     const currUser = JSON.parse(localStorage.getItem('user'));
 
     if(currUser) {
-      console.log(currUser);
       this.token = currUser.token;
+      this.user = currUser.user;
+      this.refreshToken();
     }
+
+    setInterval(() => {
+      this.refreshToken();
+    },300000);
   }
 
   public login(username: string, password: string): Observable<any> {
@@ -26,9 +33,7 @@ export class AuthService {
     .map(response => response.json())
     .map((data) => {
       this.token = data.token;
-      localStorage.setItem('user', JSON.stringify({
-        user: this.token
-      }));
+      this.user = data.user;
     });
   }
 
@@ -40,11 +45,11 @@ export class AuthService {
 
   }
   public isLoggedIn() {
-    const token = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    if(token) {
-      console.log("tes");
-      this.token = token.user;
+    if(user) {
+      this.token = user.token;
+      this.user = user.user;
       return true;
     } else {
       return false;
@@ -60,5 +65,34 @@ export class AuthService {
     headers.append('Authorization', 'JWT ' + this.token);
 
     return headers;
+  }
+
+  public setLocalStorageItem() {
+    localStorage.setItem('user', JSON.stringify({
+      token: this.token,
+      user: this.user
+    }));
+  }
+
+  public refreshToken() {
+    if(this.token) {
+      this.http.post(AppSettings.API_ENDPOINT + 'core/auth/refresh', {
+        token: this.token
+      })
+        .map(response => {
+          return response.json();
+        })
+        .map(data => {
+          const json = data;
+          this.token = json.token;
+        })
+        .subscribe(() => {
+          this.setLocalStorageItem();
+        });
+    }
+  }
+
+  public getUserRole() {
+    return this.user['user_type'];
   }
 }
