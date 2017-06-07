@@ -2,7 +2,9 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from '../login/login/login.component';
 import { OverviewComponent } from '../overview/overview/overview.component';
 import { LessonOverviewComponent } from '../lesson/lesson-overview/lesson-overview.component';
+
 import { Auth } from '../auth.guard';
+import {StudentSingleComponent} from "../student/student-single/student-single.component";
 
 export const router: Routes = [
     {
@@ -23,7 +25,12 @@ export const router: Routes = [
       path: 'lesson/:id',
       component: LessonOverviewComponent,
       canActivate: [Auth]
-    }
+    },
+  {
+      path: 'student/:id',
+      component: StudentSingleComponent,
+      canActivate: [Auth]
+  }
 ];
 
 export class AppRouter {

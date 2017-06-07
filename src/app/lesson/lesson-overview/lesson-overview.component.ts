@@ -56,6 +56,9 @@ export class LessonOverviewComponent implements OnInit {
         this.getPresenceList();
       });
   }
+  gotostudent(id){
+    this.router.navigate(['/student/' + id ]);
+  }
 
   getPresenceList() {
     this.presenceService.getPresences(this.id)
