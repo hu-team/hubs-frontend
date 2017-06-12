@@ -33,6 +33,17 @@ export class StudentService {
     })
       .catch(this.handleError);
   }
+  public getResultsFromStudent(id){
+    const token = this.auth.getToken();
+    const headers = this.auth.getHeaders();
+    return this.http.get(AppSettings.API_ENDPOINT + 'school/results/' + 1 + '/', {
+      headers: headers
+    }).map((res: Response) => {
+      const body = res.json();
+      return body;
+    })
+      .catch(this.handleError);
+  }
   private handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
