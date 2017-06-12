@@ -4,8 +4,9 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { MdCardModule } from '@angular/material';
 import { MdInputModule } from '@angular/material';
-import { MdButtonModule } from '@angular/material'; 
+import { MdButtonModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import {MdToolbarModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     MdCardModule,
     MdInputModule,
     MdButtonModule,
-    FormsModule
+    FormsModule,
+    MdToolbarModule
   ],
   declarations: [LoginComponent],
   exports: [
