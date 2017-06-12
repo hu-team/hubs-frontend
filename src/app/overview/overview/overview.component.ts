@@ -8,10 +8,14 @@ import {AuthService} from "../../auth.service";
 })
 export class OverviewComponent implements OnInit {
   showStudents: Boolean = false;
+  isStudent: Boolean = false;
 
   constructor(private authService: AuthService) {
-    if(this.authService.getUserRole()  === "counselor") {
+    console.log(this.authService.getUserRole());
+    if(this.authService.getUserRole()  === 'counselor') {
       this.showStudents = true;
+    } else if(this.authService.getUserRole()  === 'student') {
+      this.isStudent = true;
     }
   }
 
