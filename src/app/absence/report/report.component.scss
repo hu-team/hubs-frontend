@@ -1,0 +1,25 @@
+.absence-form {
+  width: 500px;
+
+  .type {
+    display: none;
+  }
+
+  md-input-container {
+    width: 100%;
+  }
+
+  .mat-select {
+    width: 100%;
+  }
+
+  span.mat-select-underline {
+    display: none;
+  }
+
+  .datepicker-btn {
+    float: right;
+    height: 21px;
+    height: 21px;
+  }
+}

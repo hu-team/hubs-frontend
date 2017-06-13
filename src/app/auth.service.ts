@@ -95,6 +95,10 @@ export class AuthService {
     }
   }
 
+  public getUser() {
+    return this.user;
+  }
+
   public getUserRole() {
     return this.user['user_type'];
   }
