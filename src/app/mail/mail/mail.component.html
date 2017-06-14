@@ -1,0 +1,19 @@
+<style>
+  textarea#email, textarea#subject {
+    resize: none;
+  }
+</style>
+<navbar></navbar>
+<h1>Email versturen</h1>
+<form emailform>
+  <md-input-container class="example-full-width">
+  <input mdInput type="text" name="email" id="email" placeholder="emailadres">
+  </md-input-container>
+  <md-input-container class="example-full-width">
+  <input mdInput type="text" name="subject" id="subject" placeholder="onderwerp">
+  </md-input-container>
+  <md-input-container class="example-full-width">
+  <textarea mdInput type="text" name="mailtext" placeholder="tekst hier" style="height:200px; resize: both; overflow: auto;"></textarea>
+  </md-input-container>
+</form>
+<a href="./overview" style="position: absolute; right: 10%">Verstuur</a>

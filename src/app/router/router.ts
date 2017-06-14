@@ -5,6 +5,7 @@ import { LessonOverviewComponent } from '../lesson/lesson-overview/lesson-overvi
 
 import { Auth } from '../auth.guard';
 import {StudentSingleComponent} from "../student/student-single/student-single.component";
+import {MailComponent} from "../mail/mail/mail.component";
 
 export const router: Routes = [
     {
@@ -26,11 +27,16 @@ export const router: Routes = [
       component: LessonOverviewComponent,
       canActivate: [Auth]
     },
-  {
+    {
       path: 'student/:id',
       component: StudentSingleComponent,
       canActivate: [Auth]
-  }
+    },
+    {
+    path: 'mail/:id',
+    component: MailComponent,
+    canActivate: [Auth]
+    }
 ];
 
 export class AppRouter {

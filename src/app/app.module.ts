@@ -10,6 +10,8 @@ import { LoginModule } from './login/login.module';
 import { AuthService } from './auth.service';
 import { OverviewModule } from './overview/overview.module';
 import {Auth} from './auth.guard';
+import { MailComponent } from './mail/mail/mail.component';
+import {MailModule} from "./mail/mail.module";
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import {Auth} from './auth.guard';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    MailModule,
     BrowserAnimationsModule,
     LoginModule,
     OverviewModule,
