@@ -20,7 +20,6 @@ export class LessonService {
       .map(this.extractData, this)
       .catch(this.handleError);
   }
-
   public getLessonById(id) {
     const token = this.auth.getToken();
     const headers = this.auth.getHeaders();
@@ -68,7 +67,7 @@ export class LessonService {
       };
 
       return newObj;
-    })
+    });
 
     return arr;
   }

@@ -4,16 +4,18 @@
   }
 </style>
 <navbar></navbar>
+<div class="container">
 <h1>Email versturen</h1>
-<form emailform>
+<form [formGroup]="mailForm">
   <md-input-container class="example-full-width">
-  <input mdInput type="text" name="email" id="email" placeholder="emailadres">
+  <input mdInput type="text" name="to_email" id="to_email" formControlName="to_email">
   </md-input-container>
   <md-input-container class="example-full-width">
-  <input mdInput type="text" name="subject" id="subject" placeholder="onderwerp">
+  <input mdInput type="text" name="subject" id="subject" formControlName="subject">
   </md-input-container>
   <md-input-container class="example-full-width">
-  <textarea mdInput type="text" name="mailtext" placeholder="tekst hier" style="height:200px; resize: both; overflow: auto;"></textarea>
+  <textarea mdInput type="text" name="message" id="message" style="height:200px; resize: both; overflow: auto;" formControlName="message"></textarea>
   </md-input-container>
 </form>
-<a href="./overview" style="position: absolute; right: 10%">Verstuur</a>
+<button (click)="sendMail()">Verstuur</button>
+</div>

@@ -8,7 +8,8 @@ import 'rxjs/add/observable/forkJoin';
 @Injectable()
 export class PresenceService {
 
-  constructor(private http: Http, private auth: AuthService) { }
+  constructor(private http: Http, private auth: AuthService) {
+  }
 
   public savePresences(studentList) {
     const list = [];

@@ -4,21 +4,26 @@
 <p>Email: {{student.email}}</p>
 <p>Studentnummer: {{student.student_number}}</p>
 
-<div class="form">
+<!--<div class="form">-->
+  <form>
+    <p>Cursus:</p> <md-select placeholder="select cursus" [(ngModel)]="selectedValue" name="lesson">
+    <md-option *ngFor="let lesson of lessons" [value]="lesson.value">
+      {{lesson.curcode}}
+    </md-option>
+  </md-select>
+    <p>Cijfer:</p> <input type="number" ng-model="grade" required>
+
+  </form>
+
   <!--<form>-->
-    <!--&lt;!&ndash;<p>Cursus:</p>  <select  ng-model="selectedValue">lessons</select>&ndash;&gt;-->
-    <!--&lt;!&ndash;<p>Cijfer:</p> <input type="number" ng-model="grade" required>&ndash;&gt;-->
-    <!--&lt;!&ndash;<md-select placeholder="select lesson" [(ngModel)]="selectedValue" name="lesson">&ndash;&gt;-->
-      <!--&lt;!&ndash;<md-option *ngFor="let lesson of lessons" [value]="lesson.value">&ndash;&gt;-->
-        <!--&lt;!&ndash;{{lesson.curname}}&ndash;&gt;-->
-      <!--&lt;!&ndash;</md-option>&ndash;&gt;-->
-    <!--&lt;!&ndash;</md-select>&ndash;&gt;-->
-    <!--<md-select placeholder="Favorite food" [(ngModel)]="selectedValue" name="food">-->
+    <!--&lt;!&ndash;<md-input-container class="selectmenu">&ndash;&gt;-->
+    <!--<md-select placeholder="Favorite food" name="food">-->
       <!--<md-option *ngFor="let food of foods" [value]="food.value">-->
         <!--{{food.viewValue}}-->
       <!--</md-option>-->
     <!--</md-select>-->
+    <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
+    <!--&lt;!&ndash;<p> Selected value: {{selectedValue}} </p>&ndash;&gt;-->
   <!--</form>-->
-</div>
   <button (click)="insertResult()" md-raised-button>Cijfer doorvoeren</button>
 </div>

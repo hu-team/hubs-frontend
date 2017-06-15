@@ -4,6 +4,7 @@ import { ResultSingleComponent } from './result-single/result-single.component';
 import { NavigationModule } from '../navigation/navigation.module';
 import { StudentModule } from '../student/student.module';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import {
   MdInputModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, MdButtonModule,
   MdToolbarModule
@@ -12,7 +13,9 @@ import {
   imports: [
     CommonModule,
     NavigationModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    MdSelectModule
   ],
   declarations: [ResultSingleComponent]
 })

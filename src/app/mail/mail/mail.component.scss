@@ -1,7 +1,7 @@
 form, h1{
   padding: 10px;
 }
-a:link, a:visited {
+button:link, button:visited {
   background-color: #0f55bd;
   color: white;
   padding: 14px 25px;
@@ -11,9 +11,18 @@ a:link, a:visited {
   margin-top: -12px;
 }
 
-a:hover, a:active {
+button:hover, button:active {
   background-color: #4288f0;
 }
 .example-full-width {
-  width: 90%;
+  width: 100%;
+}
+.container {
+  margin: 0 auto;
+  padding-top: 40px;
+  width: 1140px;
+}
+button{
+  position: absolute;
+  right: 21%;
 }
