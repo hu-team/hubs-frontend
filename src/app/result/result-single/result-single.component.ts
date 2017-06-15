@@ -3,7 +3,10 @@ import{ResultService} from '../result.service';
 import {StudentService} from "../../student/student.service";
 import{LessonService} from "../../lesson/lesson.service";
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import {
+  MdInputModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, MdButtonModule, MdToolbarModule
+}from '@angular/material';
 @Component({
   selector: 'app-result-single',
   templateUrl: './result-single.component.html',
@@ -17,20 +20,21 @@ export class ResultSingleComponent implements OnInit {
   private cursuscode = '';
 
   private sub: any;
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
+
   private lessons = [];
+  gradeForm = new FormGroup({
+    lesson: new FormControl(),
+    grade: new FormControl(),
+    student: new FormControl()
+  })
   constructor(private studentservice : StudentService, private router: Router, private lessonservice : LessonService , private route: ActivatedRoute) {
-    this.studentservice.getStudentById(this.id);
+    // this.studentservice.getStudentById(this.id);
     this.student = {};
     this.lessons = [];
-    this.getLessons();
+    this.getLesson();
     this.getStudent();
-  }
 
+  }
   getStudent(){
     this.studentservice.getStudentById(this.id)
       .subscribe(data => {
@@ -38,7 +42,7 @@ export class ResultSingleComponent implements OnInit {
         console.log(data);
       })
   }
-  getLessons(){
+  getLesson(){
     this.lessonservice.getLessons()
       .subscribe((data) => {
         data.forEach((item) => {
@@ -57,5 +61,4 @@ export class ResultSingleComponent implements OnInit {
     // const password = f.value.grade;
     this.router.navigate(['/overview']);
   }
-
 }
