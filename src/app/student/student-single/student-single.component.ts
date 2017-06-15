@@ -48,6 +48,9 @@ export class StudentSingleComponent implements OnInit {
         console.log(data);
       })
   }
+  mailversturen(){
+    this.router.navigate(['/mail/'+this.id ]);
+  }
   getResults(){
 this.studentservice.getResultsFromStudent(this.id)
   .subscribe(data =>
