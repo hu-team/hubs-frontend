@@ -13,16 +13,16 @@
       <input mdInput type="name" name="type" class="type" formControlName="type"/>
     </md-input-container>
 
-    <div *ngIf="showExtra">
-    <md-input-container>
-      <textarea mdInput placeholder="Beschrijving reden" formControlName="reason"></textarea>
-    </md-input-container>
 
     <md-input-container>
-      <input [mdDatepicker]="myDatepicker" mdInput name="report_from" formControlName="report_from" placeholder="Tijdstip">
-      <button class="datepicker-btn" [mdDatepickerToggle]="myDatepicker"></button>
-      <md-datepicker #myDatepicker></md-datepicker>
+      <textarea mdInput placeholder="Beschrijving reden" formControlName="reason" required></textarea>
     </md-input-container>
+    <div *ngIf="showExtra">
+      <md-input-container>
+        <input [mdDatepicker]="myDatepicker" mdInput name="report_from" formControlName="report_from" placeholder="Tijdstip">
+        <button class="datepicker-btn" [mdDatepickerToggle]="myDatepicker"></button>
+        <md-datepicker #myDatepicker></md-datepicker>
+      </md-input-container>
     </div>
     <button (click)="save()" md-raised-button>Afmelden</button>
   </form>
