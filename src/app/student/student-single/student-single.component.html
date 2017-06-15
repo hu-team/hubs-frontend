@@ -1,7 +1,19 @@
+
 <navbar></navbar>
 <div class="container lesson-overview">
-<h1>{{student.first_name}} {{student.last_name}}</h1>
-<p>{{student.email}}</p>
-  <p>{{student.student_number}}</p>
-  <a href="./mail/{{student.id}}">Stuur mail</a>
+  <h1>{{student.first_name}} {{student.last_name}}</h1>
+  <p>Email: {{student.email}}</p>
+  <p>Studentnummer: {{student.student_number}}</p>
+  <ngx-datatable
+    class="material"
+    [rows]="resultList"
+    [columns]="columns"
+    [limit]="10"
+    [rowHeight]="'auto'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [columnMode]="'force'"
+  >
+  </ngx-datatable>
+  <button (click)="insertStudentGrade()" md-raised-button>Cijfers invoeren</button>
 </div>

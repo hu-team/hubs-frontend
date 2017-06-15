@@ -36,7 +36,7 @@ export class StudentService {
   public getResultsFromStudent(id){
     const token = this.auth.getToken();
     const headers = this.auth.getHeaders();
-    return this.http.get(AppSettings.API_ENDPOINT + 'school/results/' + 1 + '/', {
+    return this.http.get(AppSettings.API_ENDPOINT + 'school/results?student=' + id, {
       headers: headers
     }).map((res: Response) => {
       const body = res.json();

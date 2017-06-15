@@ -12,6 +12,7 @@ import { OverviewModule } from './overview/overview.module';
 import {Auth} from './auth.guard';
 import { MailComponent } from './mail/mail/mail.component';
 import {MailModule} from "./mail/mail.module";
+import {ResultModule} from "./result/result.module";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import {MailModule} from "./mail/mail.module";
     BrowserAnimationsModule,
     LoginModule,
     OverviewModule,
+    ResultModule,
+
     RouterModule.forRoot(router)
   ],
   providers: [

@@ -6,7 +6,7 @@ import { LessonOverviewComponent } from '../lesson/lesson-overview/lesson-overvi
 import { Auth } from '../auth.guard';
 import {StudentSingleComponent} from "../student/student-single/student-single.component";
 import {MailComponent} from "../mail/mail/mail.component";
-
+import {ResultSingleComponent} from "../result/result-single/result-single.component"
 export const router: Routes = [
     {
       path: '',
@@ -32,6 +32,12 @@ export const router: Routes = [
       component: StudentSingleComponent,
       canActivate: [Auth]
     },
+
+  {
+    path: 'result/:id',
+    component: ResultSingleComponent,
+    canActivate: [Auth]
+  },
     {
     path: 'mail/:id',
     component: MailComponent,

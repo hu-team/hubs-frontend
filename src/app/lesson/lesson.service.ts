@@ -31,6 +31,16 @@ export class LessonService {
       .map(this.extractData, this)
       .catch(this.handleError);
   }
+  getResults(id){
+    return this.http.get(AppSettings.API_ENDPOINT + '/school/results?student='+ id, {
+      headers: this.auth.getHeaders()
+    })
+      .map((res: Response) => {
+        const body = res.json();
+        return body.results;
+      })
+      .catch(this.handleError);
+  }
 
   public getTime(time: Date) {
     const currTime = new Date(time);
