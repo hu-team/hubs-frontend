@@ -67,7 +67,9 @@ export class LessonService {
       };
 
       return newObj;
-    })
+    });
+
+    return arr;
   }
 
   private handleError (error: Response | any) {
