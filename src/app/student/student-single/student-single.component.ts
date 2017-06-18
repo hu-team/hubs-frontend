@@ -21,11 +21,10 @@ export class StudentSingleComponent implements OnInit {
     // { prop: 'year', name: "School jaar" },
     { prop: 'course.code', name: 'Cursuscode'},
     { prop: 'course.period', name: 'Periode'},
-    { prop: 'course.ec_points', name: "EC behaald" },
+    { prop: 'course.ec_points', name: "EC te behalen" },
 
     { prop: 'number_grade', name: "Cijfer" },
-    { prop: 'ladder_grade', name: 'Gehaald'},
-
+    // { prop: 'ladder_grade', name: 'Gehaald'},
     // { prop: 'created', name: "Datum van Toevoeging"}
   ];
   constructor(private studentservice : StudentService, private router: Router, private route: ActivatedRoute) {

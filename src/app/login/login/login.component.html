@@ -5,7 +5,7 @@
     </md-card-header>
     <md-card-content>
       <form #f="ngForm" (ngSubmit)="login(f)">
-        <md-toolbar class="loginToolbar" color="warn" *ngIf="isFormSubmit">
+        <md-toolbar class="loginToolbar" class="md-medium-toolbar" color="warn" *ngIf="isFormSubmit">
           <span *ngIf="nietLeeg">Gebruikersnaam of Wachtwoord is leeg</span>
           <span *ngIf="nietJuist">Gebruikersnaam of Wachtwoord is niet juist</span>
         </md-toolbar>
