@@ -14,7 +14,7 @@ import {StudentService} from "./student.service";
     TeachterModule,
     NavigationModule,
   ],
-  declarations: [StudentOverviewComponent, StudentSingleComponent],
+  declarations: [StudentOverviewComponent, StudentSingleComponent ],
   exports: [StudentOverviewComponent],
   providers: [StudentService]
 })
