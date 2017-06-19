@@ -1,3 +1,53 @@
 <h2>Studenten overzicht</h2>
-<ngx-datatable [rows]="rows" [columns]="columns" class="material">
+<!--<ngx-datatable [rows]="rows" [columns]="columns" class="material">-->
+<ngx-datatable
+  class="material"
+  [rows]="resultList"
+  [columns]="columns"
+  [limit]="10"
+  [rowHeight]="'auto'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [columnMode]="'force'"
+>
+  <ngx-datatable-column name="Studentnummer">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+       <span
+         title="Double click to edit"
+         (dblclick)="gotostudent(row.id)"
+       >
+               {{row.student_number}}
+             </span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="FirstName">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+             <span
+               title="Double click to edit"
+               (dblclick)="gotostudent(row.id)"
+             >
+               {{row.first_name}}
+             </span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Studentennummer">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+       <span
+         title="Double click to edit"
+         (dblclick)="gotostudent(row.id)"
+       >
+               {{row.last_name}}
+             </span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Email">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+       <span
+         title="Double click to edit"
+         (dblclick)="gotostudent(row.id)"
+       >
+               {{row.email}}
+             </span>
+    </ng-template>
+  </ngx-datatable-column>
 </ngx-datatable>

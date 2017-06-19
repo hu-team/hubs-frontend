@@ -12,8 +12,9 @@ export class StudentSingleComponent implements OnInit {
   id: number;
   status : any;
  private student : object;
+ private counselor : object;
  private resultList : object;
- private isPassed : any;
+ private passed : string;
  private test : boolean;
   private sub: any;
   columns = [
@@ -31,7 +32,8 @@ export class StudentSingleComponent implements OnInit {
   constructor(private studentservice : StudentService, private router: Router, private route: ActivatedRoute) {
     this.test = false;
     this.student = {};
-    this.getStudent();
+    this.counselor = {};
+    this.passed = "";
   }
 
   ngOnInit() {
@@ -45,6 +47,8 @@ export class StudentSingleComponent implements OnInit {
     this.studentservice.getStudentById(this.id)
       .subscribe(data => {
         this.student = data;
+        this.counselor = data.counselor;
+        console.log(this.counselor);
         console.log(data);
       })
   }
@@ -68,6 +72,18 @@ this.studentservice.getResultsFromStudent(this.id)
     // });
 
     return bool;
+  }
+  getLadderGrade(id){
+    if(id == 1){
+      this.passed = "Gezakt";
+    }
+    else if(id == 2){
+      this.passed = "Gehaald";
+    }
+    else{
+      this.passed = "Niet Aanwezig (NA)";
+    }
+    return this.passed;
   }
   insertStudentGrade(){
     this.router.navigate(['/result/'+this.id ]);

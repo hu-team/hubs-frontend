@@ -21,7 +21,17 @@ export class StudentService {
    })
      .catch(this.handleError);
  }
-
+public getStudentsFromCouncelor(id){
+  const token = this.auth.getToken();
+  const headers = this.auth.getHeaders();
+  return this.http.get(AppSettings.API_ENDPOINT + 'core/teachers/'+ id + '/', {
+    headers: headers
+  }).map((res: Response) => {
+    const body = res.json();
+    return body.students;
+  })
+    .catch(this.handleError);
+}
   public getStudentById(id) {
     const token = this.auth.getToken();
     const headers = this.auth.getHeaders();
