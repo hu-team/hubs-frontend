@@ -52,15 +52,13 @@
 {{row.number_grade}}
       </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="Status" id="status">
+    <ngx-datatable-column name="Status">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <!--<label>{{getLadderGrade(row.ladder_grade)}}</label>-->
         <md-chip-list class="mat-chip-list-stacked">
         <md-chip selected="true" color="{{getColor(row.ladder_grade)}}">
           {{getLadderGrade(row.ladder_grade)}}
         </md-chip>
         </md-chip-list>
-        <!--{{row.ladder_grade}}-->
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Index">

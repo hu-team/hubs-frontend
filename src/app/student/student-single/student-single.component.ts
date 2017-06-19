@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{StudentService} from '../student.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import {MdButtonModule} from '@angular/material';
-import {MdChipsModule} from '@angular/material';
 import {AuthService} from "../../auth.service";
 
 @Component({
@@ -30,14 +28,11 @@ export class StudentSingleComponent implements OnInit {
   private sub: any;
   columns = [
     { prop: 'course.name', name: "Cursus naam" },
-    // { prop: 'year', name: "School jaar" },
     { prop: 'course.code', name: 'Cursuscode'},
     { prop: 'course.period', name: 'Periode'},
     { prop: 'course.ec_points', name: "EC te behalen" },
 
     { prop: 'number_grade', name: "Cijfer" },
-    // { prop: 'ladder_grade', name: 'Gehaald'},
-    // { prop: 'created', name: "Datum van Toevoeging"}
   ];
   constructor(private studentservice : StudentService, private router: Router,private auth: AuthService, private route: ActivatedRoute) {
     this.test = false;
@@ -80,18 +75,6 @@ this.studentservice.getResultsFromStudent(this.id)
     { this.resultList=data.results;
     console.log(data.results);}
   )}
-  isStudentPassed(studentId) {
-    let bool = false;
-
-    // this.presenceList.forEach(present => {
-    //   if(present.student === studentId) {
-    //     bool = present.present;
-    //     this.presenceId = present.id;
-    //   }
-    // });
-
-    return bool;
-  }
   getLadderGrade(id){
     if(id == 1){
       this.passed = "Gezakt";
