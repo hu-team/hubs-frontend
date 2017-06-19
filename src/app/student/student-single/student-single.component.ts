@@ -3,6 +3,7 @@ import{StudentService} from '../student.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {MdButtonModule} from '@angular/material';
 import {MdChipsModule} from '@angular/material';
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'student-single',
@@ -11,6 +12,7 @@ import {MdChipsModule} from '@angular/material';
 })
 export class StudentSingleComponent implements OnInit {
   id: number;
+  user_role: string;
   status : any;
  private student : object;
  private counselor : object;
@@ -37,7 +39,7 @@ export class StudentSingleComponent implements OnInit {
     // { prop: 'ladder_grade', name: 'Gehaald'},
     // { prop: 'created', name: "Datum van Toevoeging"}
   ];
-  constructor(private studentservice : StudentService, private router: Router, private route: ActivatedRoute) {
+  constructor(private studentservice : StudentService, private router: Router,private auth: AuthService, private route: ActivatedRoute) {
     this.test = false;
     this.student = {};
     this.counselor = {};
@@ -49,6 +51,7 @@ export class StudentSingleComponent implements OnInit {
       this.id = +params['id'];
       this.getStudent();
       this.getResults();
+      this.user_role = this.auth.getUser()["user_type"];
     });
   }
   getStudent(){
@@ -63,6 +66,14 @@ export class StudentSingleComponent implements OnInit {
   mailversturen(){
     this.router.navigate(['/mail/'+this.id ]);
   }
+  isCounselor(){
+    if(this.user_role == "counselor"){
+      return false;
+    }
+    else {
+      return true;
+    }
+}
   getResults(){
 this.studentservice.getResultsFromStudent(this.id)
   .subscribe(data =>

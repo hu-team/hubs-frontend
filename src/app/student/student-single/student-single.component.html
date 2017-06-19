@@ -8,7 +8,7 @@
   <p>Email: {{student.email}}</p>
   <p>Studentnummer: {{student.student_number}}</p>
   </div>
-  <div class="counselorinformtion">
+  <div class="counselorinformtion" *ngIf="isCounselor()">
     <h2>SLB'er</h2>
     <p>Voornaam: {{counselor.first_name}}</p>
     <p>Achternaam: {{counselor.last_name}}</p>
@@ -52,7 +52,7 @@
 {{row.number_grade}}
       </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="Gehaald?">
+    <ngx-datatable-column name="Status" id="status">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
         <!--<label>{{getLadderGrade(row.ladder_grade)}}</label>-->
         <md-chip-list class="mat-chip-list-stacked">
@@ -63,9 +63,13 @@
         <!--{{row.ladder_grade}}-->
       </ng-template>
     </ngx-datatable-column>
+    <ngx-datatable-column name="Index">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      </ng-template>
+    </ngx-datatable-column>
   </ngx-datatable>
     <br>
   <button md-button (click)="insertStudentGrade()" md-raised-button>Cijfers invoeren</button>
-  <button md-button (click)="mailversturen()" md-raised-button>Stuur mail</button>
+  <button md-button (click)="mailversturen()" *ngIf="isCounselor()" md-raised-button>Stuur mail</button>
   </div>
   </div>
