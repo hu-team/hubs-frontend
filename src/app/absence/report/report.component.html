@@ -3,7 +3,7 @@
   <md-toolbar color="primary" *ngIf="isSend">
     <span>Je afwezigheid is doorgegeven</span>
   </md-toolbar>
-  <form class="absence-form" [formGroup]="absenceForm" *ngIf="!isSend">
+  <form class="absence-form" [formGroup]="absenceForm" *ngIf="!isSend" (ngSubmit)="save()">
     <md-input-container class="selectmenu">
       <md-select placeholder="Geef een reden op" (change)="typeChange($event)">
         <md-option value="sick">Ziek</md-option>
@@ -15,15 +15,14 @@
 
 
     <md-input-container>
-      <textarea mdInput placeholder="Beschrijving reden" formControlName="reason" required></textarea>
+      <textarea mdInput placeholder="Beschrijving reden" formControlName="reason"></textarea>
     </md-input-container>
     <div *ngIf="showExtra">
       <md-input-container>
-        <input [mdDatepicker]="myDatepicker" mdInput name="report_from" formControlName="report_from" placeholder="Tijdstip">
-        <button class="datepicker-btn" [mdDatepickerToggle]="myDatepicker"></button>
-        <md-datepicker #myDatepicker></md-datepicker>
+        <input mdInput name="report_time" formControlName="report_from" type="date" placeholder="Datum" class="absence-date" (change)="timeChange()">
+        <input mdInput name="report_from" formControlName="report_time" placeholder="Tijdstip" type="time" class="absence-time" (change)="timeChange()">
       </md-input-container>
     </div>
-    <button (click)="save()" md-raised-button>Afmelden</button>
+    <button type="submit" md-raised-button>Afmelden</button>
   </form>
 </div>
