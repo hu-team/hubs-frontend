@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import{ResultService} from '../result.service';
 import {StudentService} from "../../student/student.service";
 import{LessonService} from "../../lesson/lesson.service";
+import{CourseService} from "../../course/course.service";
 import { Router, ActivatedRoute } from '@angular/router';
 import {ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import {
@@ -21,19 +22,16 @@ export class ResultSingleComponent implements OnInit {
 
   private sub: any;
 
-  private lessons = [];
+  private courses = [];
   gradeForm = new FormGroup({
-    lesson: new FormControl(),
-    grade: new FormControl(),
-    student: new FormControl()
+    course: new FormControl(),
+    grade: new FormControl()
   })
-  constructor(private studentservice : StudentService, private router: Router, private lessonservice : LessonService , private route: ActivatedRoute) {
+  constructor(private studentservice : StudentService, private router: Router, private courseservice : CourseService , private route: ActivatedRoute) {
     // this.studentservice.getStudentById(this.id);
     this.student = {};
-    this.lessons = [];
-    this.getLesson();
-    this.getStudent();
-
+    this.courses = [];
+    this.getCourses();
   }
   getStudent(){
     this.studentservice.getStudentById(this.id)
@@ -42,11 +40,12 @@ export class ResultSingleComponent implements OnInit {
         console.log(data);
       })
   }
-  getLesson(){
-    this.lessonservice.getLessons()
+  getCourses(){
+    this.courseservice.getcourses()
       .subscribe((data) => {
+        console.log(data);
         data.forEach((item) => {
-          this.lessons.push(item);
+          this.courses.push(item);
         })
       });
   }
@@ -57,8 +56,19 @@ export class ResultSingleComponent implements OnInit {
     });
   }
   insertResult(){
-    // const student_id = f.value.id;
-    // const password = f.value.grade;
-    this.router.navigate(['/overview']);
+    // this.mailservice.setEmail({
+    //   subject: this.mailForm.value.subject,
+    //   message: this.mailForm.value.message,
+    //   to_email: this.mailForm.value.to_email
+    // })
+    //   .subscribe(data => {
+    //     this.Send = true;
+    //     this.router.navigate(['/overview' ]);
+    //   });
+  // }
+    console.log(this.gradeForm.value.course);
+    console.log(this.gradeForm.value.grade);
+    console.log(this.student);
+
   }
 }

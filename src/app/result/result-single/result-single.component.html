@@ -6,9 +6,9 @@
 
 <!--<div class="form">-->
   <form>
-    <p>Cursus:</p> <md-select placeholder="select cursus" [(ngModel)]="selectedValue" name="lesson">
-    <md-option *ngFor="let lesson of lessons" [value]="lesson.value">
-      {{lesson.curcode}}
+    <p>Cursus:</p> <md-select placeholder="select cursus" [(ngModel)]="selectedValue" name="course" >
+    <md-option *ngFor="let course of courses" [value]="course.curname">
+      {{course.curname}}
     </md-option>
   </md-select>
     <p>Cijfer:</p> <input type="number" ng-model="grade" required>
