@@ -1,4 +1,3 @@
-
 <navbar></navbar>
 <div class="container lesson-overview">
   <div class="information">
@@ -56,12 +55,17 @@
     <ngx-datatable-column name="Gehaald?">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
         <!--<label>{{getLadderGrade(row.ladder_grade)}}</label>-->
-{{getLadderGrade(row.ladder_grade)}}
+        <md-chip-list class="mat-chip-list-stacked">
+        <md-chip selected="true" color="{{getColor(row.ladder_grade)}}">
+          {{getLadderGrade(row.ladder_grade)}}
+        </md-chip>
+        </md-chip-list>
         <!--{{row.ladder_grade}}-->
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>
-  <button (click)="insertStudentGrade()" md-raised-button>Cijfers invoeren</button>
-  <button (click)="mailversturen()" md-raised-button>Stuur mail</button>
+    <br>
+  <button md-button (click)="insertStudentGrade()" md-raised-button>Cijfers invoeren</button>
+  <button md-button (click)="mailversturen()" md-raised-button>Stuur mail</button>
   </div>
   </div>

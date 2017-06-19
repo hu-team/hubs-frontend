@@ -6,6 +6,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import {TeachterModule} from '../teachter/teachter.module';
 import { StudentSingleComponent } from './student-single/student-single.component';
 import {StudentService} from "./student.service";
+import {MdButtonModule} from '@angular/material';
+import {MdChipsModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -13,6 +15,9 @@ import {StudentService} from "./student.service";
     NgxDatatableModule,
     TeachterModule,
     NavigationModule,
+    MdButtonModule,
+    MdChipsModule
+
   ],
   declarations: [StudentOverviewComponent, StudentSingleComponent ],
   exports: [StudentOverviewComponent],
