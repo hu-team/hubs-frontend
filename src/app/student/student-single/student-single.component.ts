@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import{StudentService} from '../student.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import {MdSelectModule} from '@angular/material';
+import {MdButtonModule} from '@angular/material';
+import {MdChipsModule} from '@angular/material';
 
 @Component({
   selector: 'student-single',
@@ -16,6 +17,14 @@ export class StudentSingleComponent implements OnInit {
  private resultList : object;
  private passed : string;
  private test : boolean;
+ private color: string;
+
+  availableColors = [
+    { name: 'none', color: '' },
+    { name: 'Primary', color: 'primary' },
+    { name: 'Accent', color: 'accent' },
+    { name: 'Warn', color: 'warn' }
+  ];
   private sub: any;
   columns = [
     { prop: 'course.name', name: "Cursus naam" },
@@ -83,6 +92,18 @@ this.studentservice.getResultsFromStudent(this.id)
       this.passed = "Niet Aanwezig (NA)";
     }
     return this.passed;
+  }
+  getColor(id){
+    if(id == 1){
+      this.color = "warn";
+    }
+    else if(id == 2){
+      this.color = "primary";
+    }
+    else{
+      this.color = "accent";
+    }
+    return this.color;
   }
   insertStudentGrade(){
     this.router.navigate(['/result/'+this.id ]);

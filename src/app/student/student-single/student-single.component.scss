@@ -41,3 +41,10 @@
     float: right;
   }
 }
+.mat-chip.mat-chip-selected:not(.mat-basic-chip).mat-primary{
+  background-color:#33cc33;
+  color:rgba(255,255,255,.87)
+}
+md-chip{
+  max-width: 200px;
+}
