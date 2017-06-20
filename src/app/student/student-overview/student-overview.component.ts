@@ -39,7 +39,7 @@ export class StudentOverviewComponent implements OnInit {
   }
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.id = this.auth.getUser()["id"];
+      this.id = this.auth.getUser()["teacher_id"];
       this.getStudentsFromCouncelor();
     });
   }

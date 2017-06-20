@@ -27,7 +27,7 @@ export class ResultSingleComponent implements OnInit {
     course: new FormControl(),
     grade: new FormControl()
   })
-  constructor(private studentservice : StudentService, private router: Router, private courseservice : CourseService , private route: ActivatedRoute) {
+  constructor(private studentservice : StudentService, private resultservice : ResultService, private router: Router, private courseservice : CourseService , private route: ActivatedRoute) {
     // this.studentservice.getStudentById(this.id);
     this.student = {};
     this.courses = [];
@@ -56,16 +56,25 @@ export class ResultSingleComponent implements OnInit {
     });
   }
   insertResult(){
-    // this.mailservice.setEmail({
-    //   subject: this.mailForm.value.subject,
-    //   message: this.mailForm.value.message,
-    //   to_email: this.mailForm.value.to_email
+    // this.resultservice.setGrade({
+    //   // this.gradeForm.value.course,
+    //   // this.gradeForm.value.grade,
+    //   // this.student
     // })
-    //   .subscribe(data => {
-    //     this.Send = true;
-    //     this.router.navigate(['/overview' ]);
-    //   });
+  // .subscribe(data => {
+  //     // this.router.navigate(['/overview' ]);
+  //   });
+  //   this.results.setEmail({
+  //     subject: this.mailForm.value.subject,
+  //     message: this.mailForm.value.message,
+  //     to_email: this.mailForm.value.to_email
+  //   })
+  //     .subscribe(data => {
+  //       this.Send = true;
+  //       this.router.navigate(['/overview' ]);
+  //     });
   // }
+
     console.log(this.gradeForm.value.course);
     console.log(this.gradeForm.value.grade);
     console.log(this.student);
