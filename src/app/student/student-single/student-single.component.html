@@ -15,7 +15,7 @@
     <p>Email: {{counselor.email}}</p>
   </div>
   </div>
-  <div class="student-index" *ngIf="isCounselor()">
+  <div class="student-index" *ngIf="isCounselor()== false">
     <h2>Aanwezigheidspercentage</h2>
     <course-statics [id]=id></course-statics>
   </div>
@@ -73,6 +73,6 @@
   </ngx-datatable>
     <br>
   <button md-button (click)="insertStudentGrade()" md-raised-button>Cijfers invoeren</button>
-  <button md-button (click)="mailversturen()" *ngIf="isCounselor()" md-raised-button>Stuur mail</button>
+  <button md-button (click)="mailversturen()" *ngIf="isCounselor()== false" md-raised-button>Stuur mail</button>
   </div>
   </div>

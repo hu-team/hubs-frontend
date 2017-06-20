@@ -21,7 +21,10 @@ export class ResultSingleComponent implements OnInit {
   private cursuscode = '';
 
   private sub: any;
-
+  model = 0;
+  validate(value)  {
+    value > 10.1 ? this.model = 1 : this.model = value;
+  }
   private courses = [];
   gradeForm = new FormGroup({
     course: new FormControl(),
@@ -56,28 +59,16 @@ export class ResultSingleComponent implements OnInit {
     });
   }
   insertResult(){
-    // this.resultservice.setGrade({
-    //   // this.gradeForm.value.course,
-    //   // this.gradeForm.value.grade,
-    //   // this.student
-    // })
-  // .subscribe(data => {
-  //     // this.router.navigate(['/overview' ]);
-  //   });
-  //   this.results.setEmail({
-  //     subject: this.mailForm.value.subject,
-  //     message: this.mailForm.value.message,
-  //     to_email: this.mailForm.value.to_email
-  //   })
-  //     .subscribe(data => {
-  //       this.Send = true;
-  //       this.router.navigate(['/overview' ]);
-  //     });
-  // }
-
+    this.resultservice.setGrade({
+      course_id: this.gradeForm.value.course,
+      number_grade: this.gradeForm.value.grade,
+      student_id: this.id
+    })
+  .subscribe(data => {
+      this.router.navigate(['/overview' ]);
+    });
     console.log(this.gradeForm.value.course);
     console.log(this.gradeForm.value.grade);
-    console.log(this.student);
-
+    console.log(this.id);
   }
 }
