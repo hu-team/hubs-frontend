@@ -1,0 +1,12 @@
+<p>
+  course-statics works!
+</p>
+<div style="display: block; width:800px; height:500px; " *ngIf="graph.show">
+  <canvas baseChart width="800" height="500"
+          [datasets]="graph.set"
+          [labels]="graph.labels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"></canvas>
+</div>
