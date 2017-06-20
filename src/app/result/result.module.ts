@@ -23,7 +23,7 @@ import {ResultService} from "./result.service";
     MdSelectModule
   ],
   declarations: [ResultSingleComponent],
-  exports: [ResultSingleComponent, ResultService],
+  exports: [ResultSingleComponent],
   providers: [ResultService]
 })
 export class ResultModule { }
