@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MailComponent } from './mail/mail.component';
 import {NavigationModule} from "../navigation/navigation.module";
-import {MdInputModule} from "@angular/material";
+import {MdButtonModule, MdInputModule} from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     NavigationModule,
     MdInputModule,
     FormsModule,
+    MdButtonModule,
     ReactiveFormsModule
   ],
   declarations: [MailComponent]

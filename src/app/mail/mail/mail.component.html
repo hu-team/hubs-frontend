@@ -8,7 +8,7 @@
 <h1>Email versturen</h1>
 <form [formGroup]="mailForm">
   <md-input-container class="example-full-width">
-  <input mdInput type="text" name="to_email" id="to_email" formControlName="to_email">
+  <input mdInput type="text" name="to_email" id="to_email" value="{{mailForm.value.to_email}}" disabled>
   </md-input-container>
   <md-input-container class="example-full-width">
   <input mdInput type="text" name="subject" id="subject" formControlName="subject">
@@ -17,5 +17,5 @@
   <textarea mdInput type="text" name="message" id="message" style="height:200px; resize: both; overflow: auto;" formControlName="message"></textarea>
   </md-input-container>
 </form>
-<button (click)="sendMail()">Verstuur</button>
+<button (click)="sendMail()" md-raised-button>Verstuur</button>
 </div>
