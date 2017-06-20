@@ -15,12 +15,17 @@
     <p>Email: {{counselor.email}}</p>
   </div>
   </div>
+  <div class="student-index" *ngIf="isCounselor()">
+    <h2>Aanwezigheidspercentage</h2>
+    <course-statics [id]=id></course-statics>
+  </div>
   <div class="grades">
+    <h2>Cursus overzicht</h2>
   <ngx-datatable
     class="material"
     [rows]="resultList"
     [columns]="columns"
-    [limit]="10"
+    [limit]="5"
     [rowHeight]="'auto'"
     [headerHeight]="50"
     [footerHeight]="50"

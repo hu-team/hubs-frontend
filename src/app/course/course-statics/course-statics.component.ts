@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CourseService} from "../course.service";
 import {AuthService} from "../../auth.service";
 
@@ -8,6 +8,8 @@ import {AuthService} from "../../auth.service";
   styleUrls: ['./course-statics.component.scss']
 })
 export class CourseStaticsComponent implements OnInit {
+  @Input() id: any;
+
   public lineChartOptions:any = {
     responsive: true
   };
@@ -22,7 +24,7 @@ export class CourseStaticsComponent implements OnInit {
     show: false
   }
 
-  public lineChartColors:Array<any> = [
+  public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: 'rgba(148,159,177,1)',
@@ -41,16 +43,14 @@ export class CourseStaticsComponent implements OnInit {
     }]
 
   constructor(private courseService: CourseService, private authService: AuthService) {
-    const id = this.authService.getUser()['student_id'];
-    console.log(id);
 
-    this.courseService.getcourseStaticsByStudentId(id)
-      .subscribe(data => {
-        this.graph = data;
-      });
   }
 
   ngOnInit() {
+    this.courseService.getcourseStaticsByStudentId(this.id)
+      .subscribe(data => {
+        this.graph = data;
+      });
   }
 
 }

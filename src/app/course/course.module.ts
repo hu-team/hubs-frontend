@@ -19,7 +19,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     CourseService
 ],
   exports: [
-    CourseOverviewComponent
+    CourseOverviewComponent,
+    CourseStaticsComponent
   ]
 })
 export class CourseModule { }

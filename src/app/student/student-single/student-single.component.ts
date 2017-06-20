@@ -61,6 +61,7 @@ export class StudentSingleComponent implements OnInit {
   mailversturen(){
     this.router.navigate(['/mail/'+this.id ]);
   }
+  
   isCounselor(){
     if(this.user_role == "counselor"){
       return false;
@@ -68,7 +69,7 @@ export class StudentSingleComponent implements OnInit {
     else {
       return true;
     }
-}
+  }
   getResults(){
 this.studentservice.getResultsFromStudent(this.id)
   .subscribe(data =>

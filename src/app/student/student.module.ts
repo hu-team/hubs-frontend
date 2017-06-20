@@ -8,6 +8,7 @@ import { StudentSingleComponent } from './student-single/student-single.componen
 import {StudentService} from "./student.service";
 import {MdButtonModule} from '@angular/material';
 import {MdChipsModule} from '@angular/material';
+import {CourseModule} from "../course/course.module";
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {MdChipsModule} from '@angular/material';
     TeachterModule,
     NavigationModule,
     MdButtonModule,
-    MdChipsModule
+    MdChipsModule,
+    CourseModule
 
   ],
   declarations: [StudentOverviewComponent, StudentSingleComponent ],
