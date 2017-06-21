@@ -11,7 +11,7 @@ export class ResultService {
   setGrade(opts) {
     opts.student_id = this.authService.getUser()["student_id"];
     const data = opts
-    return this.http.post(AppSettings.API_ENDPOINT + 'school/grade', data, {
+    return this.http.post(AppSettings.API_ENDPOINT + 'school/results', data, {
       headers: this.authService.getHeaders()
     });
   }

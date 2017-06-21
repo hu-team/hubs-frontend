@@ -4,19 +4,23 @@ import { CourseOverviewComponent } from './course-overview/course-overview.compo
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LessonModule } from '../lesson/lesson.module';
 import {CourseService} from "./course.service";
+import { CourseStaticsComponent } from './course-statics/course-statics.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @NgModule({
   imports: [
     CommonModule,
     NgxDatatableModule,
-    LessonModule
+    LessonModule,
+    ChartsModule
   ],
-  declarations: [CourseOverviewComponent],
+  declarations: [CourseOverviewComponent, CourseStaticsComponent],
   providers: [
     CourseService
 ],
   exports: [
-    CourseOverviewComponent
+    CourseOverviewComponent,
+    CourseStaticsComponent
   ]
 })
 export class CourseModule { }

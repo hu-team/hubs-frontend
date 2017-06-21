@@ -17,6 +17,8 @@ import {ResultService} from "./result.service";
     ReactiveFormsModule,
     NavigationModule,
     FormsModule,
+
+    MdButtonModule,
     BrowserModule,
     MdSelectModule
   ],

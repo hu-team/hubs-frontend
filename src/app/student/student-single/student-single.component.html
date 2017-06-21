@@ -15,12 +15,17 @@
     <p>Email: {{counselor.email}}</p>
   </div>
   </div>
+  <div class="student-index" *ngIf="isCounselor()== false">
+    <h2>Aanwezigheidspercentage</h2>
+    <course-statics [id]=id></course-statics>
+  </div>
   <div class="grades">
+    <h2>Cursus overzicht</h2>
   <ngx-datatable
     class="material"
     [rows]="resultList"
     [columns]="columns"
-    [limit]="10"
+    [limit]="5"
     [rowHeight]="'auto'"
     [headerHeight]="50"
     [footerHeight]="50"
@@ -68,6 +73,6 @@
   </ngx-datatable>
     <br>
   <button md-button (click)="insertStudentGrade()" md-raised-button>Cijfers invoeren</button>
-  <button md-button (click)="mailversturen()" *ngIf="isCounselor()" md-raised-button>Stuur mail</button>
+  <button md-button (click)="mailversturen()" *ngIf="isCounselor()== false" md-raised-button>Stuur mail</button>
   </div>
   </div>

@@ -8,7 +8,6 @@ export class CourseService {
 
   constructor(private http: Http, private auth: AuthService) { }
   public getcourses() {
-    const token = this.auth.getToken();
     const headers = this.auth.getHeaders();
 
     return this.http.get(AppSettings.API_ENDPOINT + 'school/courses', {
@@ -32,6 +31,46 @@ export class CourseService {
 
     return arr;
   }
+
+  public getcourseStaticsByStudentId(id) {
+    const headers = this.auth.getHeaders();
+    return this.http.get(AppSettings.API_ENDPOINT + 'stats/students/' + id + '/', {
+      headers: headers
+    })
+      .map(this.generateGraph, this)
+      .catch(this.handleError);
+  }
+
+  private generateGraph(res) {
+    const body = res.json();
+    const graph = {
+      labels: [],
+      set: [
+        {data: [], label: 'Aanwezigheidspercentage' },
+        {data: [], label: 'Minimale aanwezigheidspercentage' }
+      ],
+      show: true
+    };
+
+    body.results.map(obj => {
+      const label = obj.school_year + ' - ' + obj.period;
+      const data = obj.index;
+
+      if(data) {
+        graph.labels.push(label);
+        graph.set[0].data.push(data);
+      }
+    });
+
+    const len = graph.set[0].data.length;
+
+    for (let i = 0; i < len; i++) {
+      graph.set[1].data.push(40);
+    }
+
+    return graph;
+  }
+
   private handleError (error: Response | any) {
   // In a real world app, you might use a remote logging infrastructure
   let errMsg: string;
