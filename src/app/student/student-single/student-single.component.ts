@@ -61,7 +61,7 @@ export class StudentSingleComponent implements OnInit {
   mailversturen(){
     this.router.navigate(['/mail/'+this.id ]);
   }
-  
+
   isCounselor(){
     if(this.user_role == "counselor"){
       return false;
