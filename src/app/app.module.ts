@@ -13,6 +13,7 @@ import {Auth} from './auth.guard';
 import { MailComponent } from './mail/mail/mail.component';
 import {MailModule} from "./mail/mail.module";
 import {ResultModule} from "./result/result.module";
+import {NotificationModule} from "./notification/notification.module";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import {ResultModule} from "./result/result.module";
     LoginModule,
     OverviewModule,
     ResultModule,
-
+    NotificationModule,
     RouterModule.forRoot(router)
   ],
   providers: [

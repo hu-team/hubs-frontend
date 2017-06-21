@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService} from '../../auth.service';
-import {DomSanitizer} from "@angular/platform-browser";
-import {NotificationService} from "../../notification/notification.service";
 import {MdIconRegistry} from "@angular/material";
+import {DomSanitizer} from "@angular/platform-browser";
+import {NotificationService} from "../notification.service";
 
 @Component({
-  selector: 'navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: 'mini-notification',
+  templateUrl: './mini-notification.component.html',
+  styleUrls: ['./mini-notification.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class MiniNotificationComponent implements OnInit {
   private active: Boolean = false;
   private tooltipmsg = "";
   private tooltipPosition = 'below';
-
-  constructor(private authservice: AuthService, sanitizer: DomSanitizer, iconRegistry: MdIconRegistry, private notService: NotificationService) {
+  constructor(iconRegistry: MdIconRegistry, sanitizer: DomSanitizer, private notService: NotificationService) {
     iconRegistry.addSvgIcon(
       'notifications',
       sanitizer.bypassSecurityTrustResourceUrl('assets/ico/notifications.svg'));
@@ -39,7 +37,4 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  logout(){
-    this.authservice.logout();
-  }
 }
