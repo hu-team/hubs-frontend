@@ -17,10 +17,10 @@ import {ResultService} from "./result.service";
     ReactiveFormsModule,
     NavigationModule,
     FormsModule,
-
     MdButtonModule,
     BrowserModule,
-    MdSelectModule
+    MdSelectModule,
+    MdInputModule
   ],
   declarations: [ResultSingleComponent],
   exports: [ResultSingleComponent],

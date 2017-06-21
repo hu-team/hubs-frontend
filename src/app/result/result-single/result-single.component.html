@@ -6,15 +6,20 @@
 
 <!--<div class="form">-->
   <form [formGroup]="gradeForm">
-    <p>Cursus:</p> <md-select placeholder="selecteer een cursus" name="course" id="course" formControlName="course">
-    <md-option *ngFor="let course of courses" [value]="course.curcode">
+    <p>Cursus:</p> <md-select placeholder="selecteer een cursus" name="course" id="course" formControlName="course" required>
+    <md-option *ngFor="let course of courses" [value]="course.curid">
       {{course.curname}}
     </md-option>
   </md-select>
-    <p>Cijfer:</p> <input type="number" min=0 max=10 size="1" maxlength="1" step=1 name="grade" id="grade" required formControlName="grade" [ngModel]="model"
+    <p>Cijfer:</p> <input type="number" min=1 max=10 step=1 name="grade" id="grade" required formControlName="grade" [ngModel]="model"
                           (ngModelChange)="validate($event)">
-
-
+    <br>
+    <p>Status:</p>
+    <md-select placeholder="Selecteer een status" formControlName="ladder_grade" name="ladder_grade" required>
+      <md-option *ngFor="let ladder of ladder_grades" [value]="ladder.value">
+        {{ladder.viewValue}}
+      </md-option>
+    </md-select>
   </form>
 <br>
   <button md-button (click)="insertResult()" md-raised-button>Cijfer doorvoeren</button>

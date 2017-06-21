@@ -22,6 +22,7 @@ export class CourseService {
     const arr = body.results.map((obj) => {
 
       var newObj = {
+        curid: obj.id,
         curcode: obj.code,
         curname: obj.name,
       };
