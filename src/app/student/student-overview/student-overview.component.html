@@ -50,4 +50,18 @@
              </span>
     </ng-template>
   </ngx-datatable-column>
+  <ngx-datatable-column name="Index">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <md-chip-list class="mat-chip-list-stacked">
+        <md-chip selected="true" color="{{getColor(row.ladder_grade)}}">
+          <span
+            title="Double click to edit"
+            (dblclick)="gotostudent(row.id)"
+          >
+          {{last_index}}
+          </span>
+        </md-chip>
+      </md-chip-list>
+    </ng-template>
+  </ngx-datatable-column>
 </ngx-datatable>

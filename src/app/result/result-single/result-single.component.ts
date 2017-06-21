@@ -19,6 +19,7 @@ export class ResultSingleComponent implements OnInit {
   private student : object;
   private grade = '';
   private cursuscode = '';
+  private ladder_grade = '';
 
   private sub: any;
   model = 0;
@@ -26,9 +27,15 @@ export class ResultSingleComponent implements OnInit {
     value > 10.1 ? this.model = 1 : this.model = value;
   }
   private courses = [];
+  ladder_grades = [
+    {value: '2', viewValue: 'Gehaald'},
+    {value: '1', viewValue: 'Gezakt'},
+    {value: '0', viewValue: 'Niet aanwezig'}
+  ];
   gradeForm = new FormGroup({
     course: new FormControl(),
-    grade: new FormControl()
+    grade: new FormControl(),
+    ladder_grade: new FormControl()
   })
   constructor(private studentservice : StudentService, private resultservice : ResultService, private router: Router, private courseservice : CourseService , private route: ActivatedRoute) {
     // this.studentservice.getStudentById(this.id);
@@ -48,6 +55,7 @@ export class ResultSingleComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
         data.forEach((item) => {
+          console.log("items");
           this.courses.push(item);
         })
       });
@@ -61,8 +69,9 @@ export class ResultSingleComponent implements OnInit {
   insertResult(){
     this.resultservice.setGrade({
       course_id: this.gradeForm.value.course,
-      number_grade: this.gradeForm.value.grade,
-      student_id: this.id
+      student_id: this.id,
+      ladder_grade: this.gradeForm.value.ladder_grade,
+      number_grade: this.gradeForm.value.grade
     })
   .subscribe(data => {
       this.router.navigate(['/overview' ]);
@@ -70,5 +79,6 @@ export class ResultSingleComponent implements OnInit {
     console.log(this.gradeForm.value.course);
     console.log(this.gradeForm.value.grade);
     console.log(this.id);
+    console.log(this.gradeForm.value.ladder_grade);
   }
 }

@@ -8,8 +8,7 @@ export class ResultService {
 
   constructor(private http: Http, private authService: AuthService) { }
 
-  setGrade(opts) {
-    opts.student_id = this.authService.getUser()["student_id"];
+   setGrade(opts) {
     const data = opts
     return this.http.post(AppSettings.API_ENDPOINT + 'school/results', data, {
       headers: this.authService.getHeaders()
