@@ -6,12 +6,13 @@
 
 <!--<div class="form">-->
   <form [formGroup]="gradeForm">
-    <p>Cursus:</p> <md-select placeholder="select cursus" name="course" id="course" formControlName="course">
-    <md-option *ngFor="let course of courses" [value]="course">
+    <p>Cursus:</p> <md-select placeholder="selecteer een cursus" name="course" id="course" formControlName="course">
+    <md-option *ngFor="let course of courses" [value]="course.curcode">
       {{course.curname}}
     </md-option>
   </md-select>
-    <p>Cijfer:</p> <input type="number" name="grade" id="grade" required formControlName="grade">
+    <p>Cijfer:</p> <input type="number" min=0 max=10 size="1" maxlength="1" step=1 name="grade" id="grade" required formControlName="grade" [ngModel]="model"
+                          (ngModelChange)="validate($event)">
 
 
   </form>

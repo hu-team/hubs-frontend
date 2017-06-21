@@ -18,6 +18,7 @@ export class StudentSingleComponent implements OnInit {
  private passed : string;
  private test : boolean;
  private color: string;
+ private user_id : number;
 
   availableColors = [
     { name: 'none', color: '' },
@@ -46,7 +47,7 @@ export class StudentSingleComponent implements OnInit {
       this.id = +params['id'];
       this.getStudent();
       this.getResults();
-      this.user_role = this.auth.getUser()["user_type"];
+      this.user_id = this.auth.getUser()['teacher_id'];
     });
   }
   getStudent(){
@@ -63,7 +64,7 @@ export class StudentSingleComponent implements OnInit {
   }
 
   isCounselor(){
-    if(this.user_role == "counselor"){
+    if(this.user_id === this.counselor['id']){
       return false;
     }
     else {
