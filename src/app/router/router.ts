@@ -7,6 +7,8 @@ import { Auth } from '../auth.guard';
 import {StudentSingleComponent} from "../student/student-single/student-single.component";
 import {MailComponent} from "../mail/mail/mail.component";
 import {ResultSingleComponent} from "../result/result-single/result-single.component"
+import {CourseStaticsComponent} from "../course/course-statics/course-statics.component";
+import {NotificationsComponent} from "../notification/notifications/notifications.component";
 export const router: Routes = [
     {
       path: '',
@@ -42,7 +44,11 @@ export const router: Routes = [
     path: 'mail/:id',
     component: MailComponent,
     canActivate: [Auth]
-    }
+    }, {
+    path: 'notifications',
+    component: NotificationsComponent,
+    canActivate: [Auth]
+  }
 ];
 
 export class AppRouter {

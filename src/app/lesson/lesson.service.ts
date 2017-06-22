@@ -48,6 +48,16 @@ export class LessonService {
     return toString;
   }
 
+  public presenceOverview(lessonid) {
+    return this.http.get(AppSettings.API_ENDPOINT  + 'school/lessons/' + lessonid + '/presence-overview', {
+      headers: this.auth.getHeaders()
+    })
+      .map(res => {
+        return res.json();
+      })
+      .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
     const body = res.json();
 

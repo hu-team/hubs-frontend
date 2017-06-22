@@ -1,0 +1,15 @@
+<navbar></navbar>
+<div class="container">
+  <md-list>
+    <h2 md-subheader>Notificaties</h2>
+    <md-list-item *ngFor="let not of listItem; let i = index" [attr.data-index]="i" class="not-list-item">
+      <md-icon svgIcon="prio"></md-icon>
+      <h4 md-line (click)="gotoStudent(not.object_key)" class="not-header">{{not.title}} - {{not.message}}</h4>
+      <button (click)="markAsRead(not.id, not)" md-raised-button>Gelezen</button>
+      <p md-line> {{getDate(not.created_at)}} </p>
+    </md-list-item>
+  </md-list>
+  <div class="no-items" *ngIf="notItems">
+    <h1>Er zijn geen notificaties beschikbaar</h1>
+  </div>
+</div>

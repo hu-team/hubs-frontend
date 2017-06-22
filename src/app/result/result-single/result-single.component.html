@@ -5,25 +5,22 @@
 <p>Studentnummer: {{student.student_number}}</p>
 
 <!--<div class="form">-->
-  <form>
-    <p>Cursus:</p> <md-select placeholder="select cursus" [(ngModel)]="selectedValue" name="lesson">
-    <md-option *ngFor="let lesson of lessons" [value]="lesson.value">
-      {{lesson.curcode}}
+  <form [formGroup]="gradeForm">
+    <p>Cursus:</p> <md-select placeholder="selecteer een cursus" name="course" id="course" formControlName="course" required>
+    <md-option *ngFor="let course of courses" [value]="course.curid">
+      {{course.curname}}
     </md-option>
   </md-select>
-    <p>Cijfer:</p> <input type="number" ng-model="grade" required>
-
+    <p>Cijfer:</p> <input type="number" min=1 max=10 step=1 name="grade" id="grade" required formControlName="grade" [ngModel]="model"
+                          (ngModelChange)="validate($event)">
+    <br>
+    <p>Status:</p>
+    <md-select placeholder="Selecteer een status" formControlName="ladder_grade" name="ladder_grade" required>
+      <md-option *ngFor="let ladder of ladder_grades" [value]="ladder.value">
+        {{ladder.viewValue}}
+      </md-option>
+    </md-select>
   </form>
-
-  <!--<form>-->
-    <!--&lt;!&ndash;<md-input-container class="selectmenu">&ndash;&gt;-->
-    <!--<md-select placeholder="Favorite food" name="food">-->
-      <!--<md-option *ngFor="let food of foods" [value]="food.value">-->
-        <!--{{food.viewValue}}-->
-      <!--</md-option>-->
-    <!--</md-select>-->
-    <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
-    <!--&lt;!&ndash;<p> Selected value: {{selectedValue}} </p>&ndash;&gt;-->
-  <!--</form>-->
-  <button (click)="insertResult()" md-raised-button>Cijfer doorvoeren</button>
+<br>
+  <button md-button (click)="insertResult()" md-raised-button>Cijfer doorvoeren</button>
 </div>

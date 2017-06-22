@@ -1,20 +1,74 @@
-
 <navbar></navbar>
 <div class="container lesson-overview">
-  <h1>{{student.first_name}} {{student.last_name}}</h1>
+  <div class="information">
+  <div class="studentinformation">
+    <h2>Student</h2>
+  <p>Voornaam: {{student.first_name}} </p>
+    <p>Achternaam: {{student.last_name}}</p>
   <p>Email: {{student.email}}</p>
   <p>Studentnummer: {{student.student_number}}</p>
+  </div>
+  <div class="counselorinformtion" *ngIf="isCounselor()">
+    <h2>SLB'er</h2>
+    <p>Voornaam: {{counselor.first_name}}</p>
+    <p>Achternaam: {{counselor.last_name}}</p>
+    <p>Email: {{counselor.email}}</p>
+  </div>
+  </div>
+  <div class="student-index" *ngIf="isCounselor()== false">
+    <h2>Aanwezigheidspercentage</h2>
+    <course-statics [id]=id></course-statics>
+  </div>
+  <div class="grades">
+    <h2>Cursus overzicht</h2>
   <ngx-datatable
     class="material"
     [rows]="resultList"
     [columns]="columns"
-    [limit]="10"
+    [limit]="5"
     [rowHeight]="'auto'"
     [headerHeight]="50"
     [footerHeight]="50"
     [columnMode]="'force'"
   >
+    <ngx-datatable-column name="Cursusnaam">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{row.course.name}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Cursus code">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+               {{row.course.code }}
+
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Periode">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+               {{row.course.period}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Te behalen EC">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+ {{row.course.ec_points}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Cijfer">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+{{row.number_grade}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Status">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <md-chip-list class="mat-chip-list-stacked">
+        <md-chip selected="true" color="{{getColor(row.ladder_grade)}}">
+          {{getLadderGrade(row.ladder_grade)}}
+        </md-chip>
+        </md-chip-list>
+      </ng-template>
+    </ngx-datatable-column>
   </ngx-datatable>
-  <button (click)="insertStudentGrade()" md-raised-button>Cijfers invoeren</button>
-  <button (click)="mailversturen()" md-raised-button>Stuur mail</button>
-</div>
+    <br>
+  <button md-button (click)="insertStudentGrade()" md-raised-button>Cijfers invoeren</button>
+  <button md-button (click)="mailversturen()" *ngIf="isCounselor()== false" md-raised-button>Stuur mail</button>
+  </div>
+  </div>

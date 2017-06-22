@@ -1,6 +1,12 @@
 <nav class="navbar">
   <ul>
-    <li><a href="../overview">Overzicht</a></li>
-    <p><a href="#" (click)="logout()">Uitloggen</a></p>
+    <li><a routerLink="/overview">Overzicht</a></li>
+    <li>
+      <div class="notification">
+        <a routerLink="/notifications"><md-icon svgIcon="notifications" *ngIf="!active" ></md-icon></a>
+        <a routerLink="/notifications"> <md-icon svgIcon="notifications-active" *ngIf="active" [mdTooltip]="tooltipmsg" [mdTooltipPosition]="tooltipPosition"></md-icon></a>
+      </div>
+      <a href="#" (click)="logout()">Uitloggen</a>
+    </li>
   </ul>
 </nav>

@@ -26,4 +26,36 @@
       color: #fff;
     }
   }
+  .grades{
+    float: left;
+    width: 100%;
+  }
+  .information{
+    width: 100%;
+    float: left;
+  }
+  .studentinformation{
+    float: left;
+  }
+  .counselorinformtion{
+    float: right;
+  }
+}
+.mat-chip.mat-chip-selected:not(.mat-basic-chip).mat-primary{
+  background-color:#33cc33;
+  color:rgba(255,255,255,.87)
+}
+md-chip{
+  width: 100%;
+  max-width: 200px;
+}
+
+.student-index {
+  display: inline-block;
+  margin-bottom: 75px;
+  height: 400px;
+  width: 100%;
+}
+button{
+  margin-bottom: 20px;
 }

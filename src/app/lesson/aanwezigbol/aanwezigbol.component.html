@@ -1,0 +1,8 @@
+<ul class="aanwezigbol">
+  <li *ngFor="let lesson of lessons">
+    <md-chip-list class="mat-chip-list-stacked">
+      <md-chip selected="true" color="{{getColor(lesson)}}" [mdTooltip]="getDate(lesson.start, lesson.absence_type)" mdTooltipPosition="above"></md-chip>
+    </md-chip-list>
+  </li>
+</ul>
+

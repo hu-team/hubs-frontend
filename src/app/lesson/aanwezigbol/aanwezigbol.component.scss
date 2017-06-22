@@ -1,0 +1,17 @@
+.aanwezigbol {
+
+  li {
+    float: left;
+    list-style: none;
+    margin-right: 7px;
+  }
+
+  .mat-chip.mat-chip-selected:not(.mat-basic-chip).mat-primary {
+    background-color:#33cc33 !important;
+    color:rgba(255,255,255,.87) !important;
+  }
+
+  md-chip {
+    max-width: 5px;
+  }
+}

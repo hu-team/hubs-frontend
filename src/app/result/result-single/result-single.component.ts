@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import{ResultService} from '../result.service';
 import {StudentService} from "../../student/student.service";
 import{LessonService} from "../../lesson/lesson.service";
+import{CourseService} from "../../course/course.service";
 import { Router, ActivatedRoute } from '@angular/router';
 import {ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import {
@@ -18,22 +19,29 @@ export class ResultSingleComponent implements OnInit {
   private student : object;
   private grade = '';
   private cursuscode = '';
+  private ladder_grade = '';
 
   private sub: any;
-
-  private lessons = [];
+  model = 0;
+  validate(value)  {
+    value > 10.1 ? this.model = 1 : this.model = value;
+  }
+  private courses = [];
+  ladder_grades = [
+    {value: '2', viewValue: 'Gehaald'},
+    {value: '1', viewValue: 'Gezakt'},
+    {value: '0', viewValue: 'Niet aanwezig'}
+  ];
   gradeForm = new FormGroup({
-    lesson: new FormControl(),
+    course: new FormControl(),
     grade: new FormControl(),
-    student: new FormControl()
+    ladder_grade: new FormControl()
   })
-  constructor(private studentservice : StudentService, private router: Router, private lessonservice : LessonService , private route: ActivatedRoute) {
+  constructor(private studentservice : StudentService, private resultservice : ResultService, private router: Router, private courseservice : CourseService , private route: ActivatedRoute) {
     // this.studentservice.getStudentById(this.id);
     this.student = {};
-    this.lessons = [];
-    this.getLesson();
-    this.getStudent();
-
+    this.courses = [];
+    this.getCourses();
   }
   getStudent(){
     this.studentservice.getStudentById(this.id)
@@ -42,11 +50,13 @@ export class ResultSingleComponent implements OnInit {
         console.log(data);
       })
   }
-  getLesson(){
-    this.lessonservice.getLessons()
+  getCourses(){
+    this.courseservice.getcourses()
       .subscribe((data) => {
+        console.log(data);
         data.forEach((item) => {
-          this.lessons.push(item);
+          console.log("items");
+          this.courses.push(item);
         })
       });
   }
@@ -57,8 +67,18 @@ export class ResultSingleComponent implements OnInit {
     });
   }
   insertResult(){
-    // const student_id = f.value.id;
-    // const password = f.value.grade;
-    this.router.navigate(['/overview']);
+    this.resultservice.setGrade({
+      course_id: this.gradeForm.value.course,
+      student_id: this.id,
+      ladder_grade: this.gradeForm.value.ladder_grade,
+      number_grade: this.gradeForm.value.grade
+    })
+  .subscribe(data => {
+      this.router.navigate(['/overview' ]);
+    });
+    console.log(this.gradeForm.value.course);
+    console.log(this.gradeForm.value.grade);
+    console.log(this.id);
+    console.log(this.gradeForm.value.ladder_grade);
   }
 }

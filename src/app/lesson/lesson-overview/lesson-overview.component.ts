@@ -18,6 +18,7 @@ export class LessonOverviewComponent implements OnInit {
   presenceId: number;
   presentList: Array<number> = [];
   absenceList: Array<number> = [];
+  prevPresence: Array<any> = [];
   savedSet: Boolean = false;
   isSaved: Boolean = false;
   savedColor: string = 'primary';
@@ -34,7 +35,9 @@ export class LessonOverviewComponent implements OnInit {
   },{
     prop: 'student_number',
     name: 'Studentennummer'
-  }]
+  },{
+    name: 'Aanwezigheid voorgaande lessen'
+    }]
   constructor(private ls: LessonService, private router: Router, private route: ActivatedRoute, private presenceService: PresenceService) {
 
   }
@@ -42,7 +45,7 @@ export class LessonOverviewComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
-      this.getLesson();
+      this.getPrevPress();
     });
   }
 
@@ -58,6 +61,27 @@ export class LessonOverviewComponent implements OnInit {
   }
   gotostudent(id){
     this.router.navigate(['/student/' + id ]);
+  }
+
+  getPrevPress() {
+    this.ls.presenceOverview(this.id)
+      .subscribe(data => {
+        this.prevPresence = data;
+        this.getLesson();
+      });
+  }
+
+  guiPress(firstname, lastname) {
+    const fullName = firstname + ' ' + lastname;
+    const users = this.prevPresence.filter(data => {
+      if(data.name === fullName) {
+        return data;
+      }
+    });
+
+    if(users.length > 0 ) {
+      return users[0].lessons;
+    }
   }
 
   getPresenceList() {
@@ -76,6 +100,15 @@ export class LessonOverviewComponent implements OnInit {
           student.fullName = student.first_name + ' ' + student.last_name;
         });
       });
+  }
+
+  setPresent(data) {
+      data.forEach((v, i) => {
+        const body = JSON.parse(v._body);
+        const present = body.present;
+
+        this.prevPresence[i].lessons[0].presence = present;
+    });
   }
 
   isStudentPresence(studentId) {
@@ -117,12 +150,14 @@ export class LessonOverviewComponent implements OnInit {
           this.savedSet = true;
           this.isSaved = true;
 
+          this.setPresent(result);
           this.clearMessage();
         } else {
           this.savedSet = true;
           this.isSaved = false;
           this.savedColor = 'warn';
 
+          this.setPresent(result);
           this.clearMessage();
         }
       });

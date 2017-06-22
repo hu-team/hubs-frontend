@@ -14,12 +14,36 @@
       li {
         float: left;
         margin-left: 25px;
+
+
+        &:nth-last-child(1) {
+          float: right;
+          width: 30%;
+        }
+
       }
       p{
         float: right;
         margin-top: 0px;
       }
     }
+
+  .notification {
+    cursor: pointer;
+    display: block;
+    width: 10%;
+    float: left;
+
+    a {
+      background-color: initial !important;
+      color: initial !important;
+      padding: initial !important;
+      text-align: initial !important;
+      text-decoration: initial !important;
+      display: initial !important;
+      margin-top: initial !important;
+    }
+  }
 }
 a:link, a:visited {
   background-color: #0f55bd;
