@@ -13,22 +13,19 @@ export class AanwezigbolComponent implements OnInit {
   }
 
   getColor(data) {
-    console.log(data.presence);
     if(data.presence) {
       return "primary";
     } else if(!data.presence && !data.absence_type) {
-      return "warn"
+      return "warn";
     } else if(!data.presence && data.absence_type) {
-      return "accent"
+      return "accent";
     };
-    console.log(data);
   }
 
   getDate(date, absence) {
     const newDate = new Date(date);
     let toString = newDate.getDay() + '-' + newDate.getMonth() + '-' + newDate.getFullYear();
     if(absence) {
-      console.log(absence);
       switch (absence) {
         case 'sick':
           toString += " reden: Ziek";

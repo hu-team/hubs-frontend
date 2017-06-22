@@ -102,6 +102,15 @@ export class LessonOverviewComponent implements OnInit {
       });
   }
 
+  setPresent(data) {
+      data.forEach((v, i) => {
+        const body = JSON.parse(v._body);
+        const present = body.present;
+
+        this.prevPresence[i].lessons[0].presence = present;
+    });
+  }
+
   isStudentPresence(studentId) {
     let bool = false;
 
@@ -141,12 +150,14 @@ export class LessonOverviewComponent implements OnInit {
           this.savedSet = true;
           this.isSaved = true;
 
+          this.setPresent(result);
           this.clearMessage();
         } else {
           this.savedSet = true;
           this.isSaved = false;
           this.savedColor = 'warn';
 
+          this.setPresent(result);
           this.clearMessage();
         }
       });
