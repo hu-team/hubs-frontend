@@ -53,14 +53,14 @@ export class StudentOverviewComponent implements OnInit {
         console.log(data);
         this.resultList = data;
         data.forEach((item) => {
-          this.last_index = Math.floor(item.last_index_point['index']);
-          console.log(this.last_index);
-        })
+          item.last_index_point['index'] = Math.floor(item.last_index_point['index']);
+
+        });
         // this.studentList = this.students;
       });
   }
-  getColor(){
-    if(this.last_index <= 40){
+  getColor(color){
+    if(color <= 40){
       this.color = "warn";
     }
     else{
